@@ -1,93 +1,61 @@
-/* This is a CSS comment */
 /* Select the button elements using the button selector */
 button {
-    /* Set the background color to a light blue */
-    background-color: #4CAF50;
-    /* Set the border to none */
-    border: none;
-    /* Set the text color to white */
-    color: white;
-    /* Set the padding to 15 pixels */
-    padding: 15px;
-    /* Set the text alignment to center */
-    text-align: center;
-    /* Set the text decoration to none */
-    text-decoration: none;
-    /* Set the display to inline-block */
-    display: inline-block;
-    /* Set the font size to 16 pixels */
-    font-size: 16px;
-    /* Set the cursor to pointer */
-    cursor: pointer;
-    /* Set the border radius to 8 pixels */
-    border-radius: 8px;
-    /* Add a transition effect for the background color */
-    transition: background-color 0.4s;
-    /* Set the margin */
-    margin: 15px;
-    /* Set the width */
-    min-width: 250px;
-    
-  }
-  
-  /* Use the :hover pseudo-class to change the background color when the mouse is over the button */
-  button:hover {
-    /* Set the background color to a darker shade of blue */
-    background-color: #008CBA;
-  }
-  
-  /* Use the .container class to wrap the buttons in a div element */
-  .container {
-    /* Set the display to flex */
-    display: flex;
-    /* Set the justify-content to center to align the buttons horizontally */
-    justify-content: center;
-    /* Set the align-items to center to align the buttons vertically */
-    align-items: center;
-    /* Set the height to 200 pixels */
-    height: 200px;
-  }
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.4s;
+  margin: 15px;
+  min-width: 250px;
+}
 
-  /* Select the container element using the .cards class */
+/* Use the :hover pseudo-class to change the background color when the mouse is over the button */
+button:hover {
+  background-color: #008CBA;
+}
+
+/* Select the container element using the .container class */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* Select the container element using the .cards class */
 .cards {
-    /* Set the display to flex */
-    display: flex;
-    /* Set the flex direction to row */
-    flex-direction: row;
-    /* Set the justify content to center */
-    justify-content: center;
-    /* Set the flex wrap to wrap */
-    flex-wrap: wrap;
-  }
-  
-  /* Select the images using the img selector */
-img {
-    /* Set the width to 200 pixels */
-    width: 200px;
-    /* Set the height to 300 pixels */
-    height: 300px;
-    /* Set the margin to 10 pixels */
-    margin: 10px;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-  /* Select the container element using the .new-card class */
+/* Select the images using the img selector */
+img {
+  width: 200px;
+  height: 300px;
+  margin: 10px;
+  display: none; /* Hide images by default */
+}
+
+/* Select the container element using the .new-card class */
 .new-card {
-    /* Set the display to flex */
-    display: flex;
-    /* Set the flex direction to column */
-    flex-direction: column;
-    /* Set the justify content to center */
-    justify-content: center;
-    /* Set the align items to center */
-    align-items: center;
-  }
-  
-  /* Select the image using the id selector */
-  #currentPlayerNewCard {
-    /* Set the width to 200 pixels */
-    width: 200px;
-    /* Set the height to 300 pixels */
-    height: 300px;
-    /* Set the margin to 10 pixels */
-    margin: 10px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Select the image using the id selector */
+#currentPlayerNewCard {
+  width: 200px;
+  height: 300px;
+  margin: 10px;
+  display: none; /* Hide the new card image by default */
+}
