@@ -39,4 +39,4 @@ const newCard = dealOneCard(myDeck);
 console.log('Current Player\'s Cards:', currentPlayer);
 console.log('Current Player\'s New Card:', newCard);
 
-//speedy
+//speedy 2.0
