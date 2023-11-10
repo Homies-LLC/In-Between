@@ -8,7 +8,7 @@ function createDeck() {
     const deck = [];
     for (const suit of suits) {
         for (const rank of ranks) {
-            deck.push(`Cards/${rank}_of_${suit}.png`);
+            deck.push(`Cards PNG/${rank}_of_${suit}.png`);
         }
     }
     return deck;
