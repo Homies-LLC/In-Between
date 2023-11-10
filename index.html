@@ -7,9 +7,35 @@
     <title>In Between</title>
 </head>
 <body>
-    <div class="container">
-        <button onclick="displayCurrentPlayerCards()">Current Player's Cards</button>
-        <button onclick="displayCurrentPlayerNewCard()">Current Player's New Card</button>
+
+    <!-- Game Start Screen -->
+    <div class="start-screen" id="start-screen">
+        <pre>                                                                                                  
+            ,---,                          ,---,.               ___                                                  
+            ,`--.' |                        ,'  .'  \            ,--.'|_                                                
+            |   :  :      ,---,     ,---,.,---.' .' |            |  | :,'          .---.                         ,---,  
+            :   |  '  ,-+-. /  |  ,'  .' ||   |  |: |            :  : ' :         /. ./|                     ,-+-. /  | 
+            |   :  | ,--.'|'   |,---.'   ,:   :  :  /   ,---.  .;__,'  /       .-'-. ' |   ,---.     ,---.  ,--.'|'   | 
+            '   '  ;|   |  ,"' ||   |    |:   |    ;   /     \ |  |   |       /___/ \: |  /     \   /     \|   |  ,"' | 
+            |   |  ||   | /  | |:   :  .' |   :     \ /    /  |:__,'| :    .-'.. '   ' . /    /  | /    /  |   | /  | | 
+            '   :  ;|   | |  | |:   |.'   |   |   . |.    ' / |  '  : |__ /___/ \:     '.    ' / |.    ' / |   | |  | | 
+            |   |  '|   | |  |/ `---'     '   :  '; |'   ;   /|  |  | '.'|.   \  ' .\   '   ;   /|'   ;   /|   | |  |/  
+            '   :  ||   | |--'            |   |  | ; '   |  / |  ;  :    ; \   \   ' \ |'   |  / |'   |  / |   | |--'   
+            ;   |.' |   |/                |   :   /  |   :    |  |  ,   /   \   \  |--" |   :    ||   :    |   |/       
+            '---'   '---'                 |   | ,'    \   \  /    ---`-'     \   \ |     \   \  /  \   \  /'---'        
+                                          `----'       `----'                 '---"       `----'    `----'              
+                                                                                                            © 2023
+                                                                                                           All Rights Reserved
+                                                                                                                   Homies LLC.            
+        </pre>
+        <button onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Game Content -->
+    <div class="container hidden" id="game-container">
+        <button onclick="displayCurrentPlayerCards()">Deal Two Cards</button>
+        <button onclick="displayCurrentPlayerNewCard()">Deal One Card</button>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     </div>
 
     <div class="container">
@@ -20,8 +46,7 @@
     <div class="container">
         <img id="currentPlayerNewCard" alt="New Card">
     </div>
-
+    
     <script src="index.js"></script>
 </body>
-
 </html>

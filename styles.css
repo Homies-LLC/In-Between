@@ -1,34 +1,52 @@
-/* Select the button elements using the button selector */
+/* Apply a pixelated font for that retro feel */
+body {
+  font-family: 'Press Start 2P', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Set the body height to 100% of the viewport height */
+  margin: 0;
+}
+
+/* Apply a Zork-style background */
+body {
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+  /* Replace the path with your background image */
+  background-image: url('path/to/your/background-image.jpg');
+  background-repeat: repeat; /* Adjust based on your background image */
+}
+
+/* Style the button to look like a DOS command */
 button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
+  background-color: #000;
+  border: 1px solid #fff;
+  color: #fff;
   padding: 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+  font-family: 'Press Start 2P', cursive;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 8px;
-  transition: background-color 0.4s;
-  margin: 15px;
-  min-width: 250px;
+  border-radius: 4px;
 }
 
-/* Use the :hover pseudo-class to change the background color when the mouse is over the button */
+/* Change button style on hover */
 button:hover {
-  background-color: #008CBA;
+  background-color: #fff;
+  color: #000;
 }
 
-/* Select the container element using the .container class */
+/* Style for container */
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: row; /* Change to row */
   align-items: center;
-  height: 200px;
+  justify-content: center;
+  height: 400px; /* Increased container height */
 }
 
-/* Select the container element using the .cards class */
+/* Style for cards */
 .cards {
   display: flex;
   flex-direction: row;
@@ -36,26 +54,24 @@ button:hover {
   flex-wrap: wrap;
 }
 
-/* Select the images using the img selector */
+/* Style for images */
 img {
-  width: 200px;
-  height: 300px;
+  width: 300px; /* Increased width of the cards */
+  height: 450px; /* Increased height of the cards */
   margin: 10px;
-  display: none; /* Hide images by default */
+  display: none;
 }
 
-/* Select the container element using the .new-card class */
-.new-card {
+/* Style for the start screen */
+.start-screen {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-/* Select the image using the id selector */
-#currentPlayerNewCard {
-  width: 200px;
-  height: 300px;
-  margin: 10px;
-  display: none; /* Hide the new card image by default */
+/* Hide elements with the 'hidden' class */
+.hidden {
+  display: none;
 }
