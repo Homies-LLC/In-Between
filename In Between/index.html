@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Game</title>
+</head>
+<body>
+
+<script>
+    const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+    const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
+
+    function createDeck() {
+        const deck = [];
+        for (const suit of suits) {
+            for (const rank of ranks) {
+                deck.push(`${rank}_of_${suit}.png`);
+            }
+        }
+        return deck;
+    }
+
+    function shuffleDeck(deck) {
+        for (let i = deck.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [deck[i], deck[j]] = [deck[j], deck[i]];
+        }
+    }
+
+    function dealTwoCards(deck) {
+        return [deck.pop(), deck.pop()];
+    }
+
+    function dealOneCard(deck) {
+        return [deck.pop()];
+    }
+
+    const myDeck = createDeck();
+    shuffleDeck(myDeck);
+
+    function displayCurrentPlayerCards() {
+        const currentPlayer = dealTwoCards(myDeck);
+        document.getElementById('currentPlayerCard1').src = currentPlayer[0];
+        document.getElementById('currentPlayerCard2').src = currentPlayer[1];
+    }
+
+    function displayCurrentPlayerNewCard() {
+        const newCard = dealOneCard(myDeck);
+        document.getElementById('currentPlayerNewCard').src = newCard[0];
+    }
+</script>
+
+<button onclick="displayCurrentPlayerCards()">Current Player's Cards</button>
+<button onclick="displayCurrentPlayerNewCard()">Current Player's New Card</button>
+
+<img id="currentPlayerCard1" alt="Card 1">
+<img id="currentPlayerCard2" alt="Card 2">
+<img id="currentPlayerNewCard" alt="New Card">
+
+</body>
+</html>
