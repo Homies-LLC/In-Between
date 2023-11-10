@@ -24,9 +24,9 @@ button {
   background-color: #000;
   border: 1px solid #fff;
   color: #fff;
-  padding: 15px;
+  padding: 40px; /* Increased padding for larger button */
   font-family: 'Press Start 2P', cursive;
-  font-size: 16px;
+  font-size: 28px; /* Increased font size for larger button */
   cursor: pointer;
   border-radius: 4px;
 }
@@ -46,12 +46,24 @@ button:hover {
   height: 400px; /* Increased container height */
 }
 
-/* Style for cards */
-.cards {
+/* Style for the start screen */
+.start-screen {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  text-align: center;
+  margin-top: 20px; /* Added margin to create space between title art and button */
+}
+
+/* Larger font for the title art */
+.start-screen pre {
+  font-size: 24px; /* Adjust the font size as needed */
+}
+
+/* Hide elements with the 'hidden' class */
+.hidden {
+  display: none;
 }
 
 /* Style for images */
@@ -71,7 +83,17 @@ img {
   text-align: center;
 }
 
+/* Larger font for the title art */
+.start-screen pre {
+  font-size: 24px; /* Adjust the font size as needed */
+}
+
 /* Hide elements with the 'hidden' class */
 .hidden {
   display: none;
 }
+
+/* Moblie view set-up */
+@media only screen and (max-width: 600px) {
+    /* styles for small screens */
+  }
