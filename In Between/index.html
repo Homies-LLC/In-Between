@@ -8,6 +8,9 @@
 <body>
 
 <script>
+//index.js
+    
+    //Deck
     const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
     const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
 
@@ -15,12 +18,13 @@
         const deck = [];
         for (const suit of suits) {
             for (const rank of ranks) {
-                deck.push(`${rank}_of_${suit}.png`);
+                deck.push(`Cards/${rank}_of_${suit}.png`);
             }
         }
         return deck;
     }
 
+    //Shuffler
     function shuffleDeck(deck) {
         for (let i = deck.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -28,6 +32,7 @@
         }
     }
 
+   //Dealing Cards
     function dealTwoCards(deck) {
         return [deck.pop(), deck.pop()];
     }
@@ -39,6 +44,7 @@
     const myDeck = createDeck();
     shuffleDeck(myDeck);
 
+    //Displaying
     function displayCurrentPlayerCards() {
         const currentPlayer = dealTwoCards(myDeck);
         document.getElementById('currentPlayerCard1').src = currentPlayer[0];
