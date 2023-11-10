@@ -95,5 +95,7 @@ img {
 
 /* Moblie view set-up */
 @media only screen and (max-width: 600px) {
-    /* styles for small screens */
+  header, main, footer {
+      padding: 10px;
   }
+}
