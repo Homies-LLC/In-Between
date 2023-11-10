@@ -1,44 +1,40 @@
-// Sample code (simplified for illustration)
+// Deck
+const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
 
-// Step 1: Initialize the Game
-let deck = [...Array(52).keys()]; // Representing cards as numbers for simplicity
-shuffleDeck(deck);
-
-// Step 2: Deal Cards
-let player1Cards = dealCards(deck);
-let player2Cards = dealCards(deck);
-
-// Step 3: Place Bets (Assuming players always bet)
-
-// Step 4: Draw a Card
-let drawnCard = drawCard(deck);
-
-// Step 5: Evaluate Bets
-if (isBetween(drawnCard, player1Cards)) {
-    // Player 1 wins the bet
-    // Update scores or perform other actions
-} else if (isBetween(drawnCard, player2Cards)) {
-    // Player 2 wins the bet
-    // Update scores or perform other actions
-} else {
-    // Nobody wins this round
+function createDeck() {
+    const deck = [];
+    for (const suit of suits) {
+        for (const rank of ranks) {
+            deck.push(`${rank} of ${suit}`);
+        }
+    }
+    return deck;
 }
 
-// Repeat steps 3-5 for additional rounds
-
-// Helper Functions
+// Shuffler
 function shuffleDeck(deck) {
-    // Implement a deck shuffling algorithm
+    for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
 }
 
-function dealCards(deck) {
-    // Implement logic to deal three cards to a player
+// Deal Two Cards
+function dealTwoCards(deck) {
+    return [deck.pop(), deck.pop()];
 }
 
-function drawCard(deck) {
-    // Implement logic to draw a card from the deck
-}
 
-function isBetween(drawnCard, playerCards) {
-    // Implement logic to check if the drawn card is between the player's two cards
+// Deal One Card
+function dealOneCards(deck) {
+    return [deck.pop(),];
 }
+// Example usage:
+const myDeck = createDeck();
+shuffleDeck(myDeck);
+
+const currentPlayer = dealTwoCards(myDeck);
+const newCard = dealOneCards(myDeck);
+console.log('Current Players Cards:', currentPlayer);
+console.log('Current Players New Card', newCard);
