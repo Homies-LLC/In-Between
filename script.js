@@ -1,20 +1,20 @@
 // Section 1: Deck / Shuffler / Dealing Cards                                                                                        
 
-    // Deck
-const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
-
+// ** Function to create a deck of cards **
 function createDeck() {
+    const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
+    const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'];
     const deck = [];
     for (const suit of suits) {
         for (const rank of ranks) {
             deck.push(`Cards PNG/${rank}_of_${suit}.png`);
         }
     }
+
     return deck;
 }
 
-    // Shuffler
+// ** Function to shuffle the deck **
 function shuffleDeck(deck) {
     for (let i = deck.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -22,49 +22,36 @@ function shuffleDeck(deck) {
     }
 }
 
-    // Dealing Cards
-function dealTwoCards(deck) {
-    if (deck.length === 0) {
-        // Deck is empty
-        const reshuffle = window.confirm('The deck is empty. Do you want to reshuffle?');
-        if (reshuffle) {
-            // Reshuffle the deck
-            shuffleDeck(deck);
-        } else {
-            return null;
-        }
+// ** Function to draw two cards from the deck **
+function drawTwoCards(deck) {
+    if (deck.length < 2) {
+        console.log("Not enough cards in the deck to draw two cards.");
+        return;
     }
-    const firstCard = dealOneCard(deck)[0];
-        // Check if the first card is an Ace ('A')
-    if (firstCard.includes('A')) {
-         // Prompt the player to choose high or low for the Ace
-        const isHigh = window.confirm('You got an Ace! Do you want it to be high? Click OK for high, Cancel for low.');
-            // Display the alert
-        if (isHigh) {
-            window.alert('You chose Ace to be high!');
-        } else {
-            window.alert('You chose Ace to be low!');
-        }
-        // Deal the second card
-        const secondCard = dealOneCard(deck)[0];
-        return [firstCard, secondCard];
+
+    const card1 = deck.pop();
+    const card2 = deck.pop();
+
+    return { card1, card2 };
+}
+
+// ** Function to draw one card from the deck, 
+// checking if this third card is in-between the previous two **
+function dealOneCard(deck, card1, card2) {
+    if (deck.length === 0) {
+        console.log("No cards left in the deck.");
+        return;
+    }
+
+    const card3 = deck.pop();
+    const isBetween = (card3 > Math.min(card1, card2)) && (card3 < Math.max(card1, card2));
+
+    if (isBetween) {
+        return { card3, message: "Card is between" };
     } else {
-        // If the first card is not an Ace, just deal the second card
-        const secondCard = dealOneCard(deck)[0];
-        return [firstCard, secondCard];
+        return { card3, message: "Card is not between" };
     }
 }
-
-function dealOneCard(deck) {
-    if (deck.length === 0) {
-        console.error('Deck is empty!');
-        return null;
-    }
-    return [deck.pop()];
-}
-
-const myDeck = createDeck();
-shuffleDeck(myDeck);
 
 //Section 2: Currency / Wallet / Ante
 
