@@ -1,65 +1,70 @@
-/*****************/
-/*    GENERAL    */
-/*****************/
-
 body {
-  /* Apply a pixelated font for that retro feel */
   font-family: 'Press Start 2P', cursive;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Set the body height to 100% of the viewport height */
+  height: 100vh;
   margin: 0;
-  /* Apply a Zork-style background */
   background-color: #000;
   color: #fff;
+  overflow: hidden;
+  background-image: url('path/to/your/background-image.jpg');
+  background-repeat: repeat;
 }
 
-/* Style the button to look like a DOS command */
-button {
-  background-color: #000;
-  border: 1px solid #fff;
-  color: #fff;
-  padding: 40px; /* Increased padding for larger button */
+a {
+  padding: 40px;
   font-family: 'Press Start 2P', cursive;
-  font-size: 28px; /* Increased font size for larger button */
+  font-size: 28px;
   cursor: pointer;
   border-radius: 4px;
 }
 
-/* Change button style on hover */
+button {
+  background-color: #000;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 40px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 28px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
 button:hover {
   background-color: #fff;
   color: #000;
 }
 
-/* Style for container */
+#cardDisplayArea {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+}
+
 .container {
-  flex-direction: row; /* Change to row */
-  height: 25vh; /* Set the height to 25% viewpoer height */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
 }
 
-
-/********************/
-/*    index.html    */
-/********************/
-
-/* Style for the start screen */
-.start-screen {
-  text-align: center;
-  margin-top: 20px; /* Added margin to create space between title art and button */
-  font-size: 24px; /* Adjust the font size as needed */
-}
-
-
-/************************/
-/*    inbetween.html    */
-/************************/
-
-/* Style for images */
 img {
-  width: 300px; /* Increased width of the cards */
-  height: 450px; /* Increased height of the cards */
+  width: 300px;
+  height: 450px;
   margin: 10px;
+}
+
+.start-screen {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+margin-top: 20px;
 }
