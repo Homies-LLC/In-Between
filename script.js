@@ -119,7 +119,7 @@ function deal() {
 
 }
 
-function hit() {
+async function hit() {
 
     // draw the top card, assign card3
     let topCard = deck.pop();
@@ -127,12 +127,16 @@ function hit() {
     card3[0] = cardname[topCard];
     card3[1] = rank[topCard];
 
+    // display card 3
+    document.getElementById("imgCard3").src = card3[0];
+
     // evaulate if inBetween
+    let value = await 300000;
     isBetween = (card3[1] > Math.min(card1[1], card2[1])) && (card3[1] < Math.max(card1[1], card2[1]));
     if (isBetween) {
-        alert("you win ;(");
+        window.confirm("you win ;(");
     }
     else {
-        alert("you lose");
+        window.confirm("you lose");
     }
 }
