@@ -1,84 +1,127 @@
-// Section 1: Deck / Shuffler / Dealing Cards                                                                                        
 
-// ** Function to create a deck of cards **
-function createDeck() {
-    const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
-    const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'];
-    const deck = [];
-    for (const suit of suits) {
-        for (const rank of ranks) {
-            deck.push(`Cards PNG/${rank}_of_${suit}.png`);
-        }
-    }
+//****************************//
+//    initialize variables    //
+//****************************//
 
-    return deck;
+// create deck
+let deck = [];
+for (i=0;i<52;i++) {
+    deck.push(i);
 }
 
-// ** Function to shuffle the deck **
-function shuffleDeck(deck) {
+let rank = [];
+for (i=0;i<52;i++) {
+    if (i <= 12) {
+        rank.push(i+2);
+    }
+    else if (i <= 25) {
+        rank.push(i + 2 - 13);
+    }
+    else if (i <= 38) {
+        rank.push(i + 2 - 13 - 13);
+    }
+    else if (i <= 51) {
+        rank.push(i + 2 - 13 - 13 - 13);
+    }
+}
+
+let cardname = [];
+for (i=0;i<52;i++) {
+    if (i <= 12) {
+        cardname.push(JSON.stringify(i+2) + '_of_spades');
+    }
+    else if (i <= 25) {
+        cardname.push(JSON.stringify(i + 2 - 13) + '_of_clubs');
+    }
+    else if (i <= 38) {
+        cardname.push(JSON.stringify(i + 2 - 13 - 13) + '_of_diamonds');
+    }
+    else if (i <= 51) {
+        cardname.push(JSON.stringify(i + 2 - 13 - 13 - 13) + '_of_hearts');
+    }
+}
+
+// cards
+let card1 = [];
+let card2 = [];
+let card3 = [];
+
+// bools
+let isBetween = true;
+
+
+//********************//
+//    Housekeeping    //
+//********************//
+
+// shuffle the deck
+shuffle();
+
+//*****************//
+//    functions    //
+//*****************//
+
+function shuffle() {
     for (let i = deck.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [deck[i], deck[j]] = [deck[j], deck[i]];
     }
 }
 
-// ** Function to draw two cards from the deck **
-function dealTwoCards(deck) {
-    if (deck.length < 2) {
-        console.log("Not enough cards in the deck to draw two cards.");
-        return;
+function resetDeck() {
+    deck = [];
+    for (i=0;i<52;i++) {
+        deck.push(i);
     }
-
-    const card1 = deck.pop();
-    const card2 = deck.pop();
-
-    return { card1, card2 };
+    shuffle();
 }
 
-// ** Function to draw one card from the deck, 
-// checking if this third card is in-between the previous two **
-function dealOneCard(deck, card1, card2) {
-    if (deck.length === 0) {
-        console.log("No cards left in the deck.");
-        return;
+function deal() {
+
+    // check if we have enough cards to continue
+    if (deck.length <= 2) {
+        // insert message to player here "out of cards, reshuffle."
+        resetDeck();
+    }
+    
+    // draw top card, assign card 1
+    let topCard = deck.pop();
+
+    card1[0] = cardname[topCard];
+    card1[1] = rank[topCard];
+
+    // check for ace
+    if (card1[1] == 14) {
+        // prompt user to choose high or low
+        let isLow = window.confirm("Should the ace be low? Ok = Yes.");
+        if (isLow) {
+            card1[1] = 1;
+        }
     }
 
-    const card3 = deck.pop();
-    const isBetween = (card3 > Math.min(card1, card2)) && (card3 < Math.max(card1, card2));
+    // draw new top card, assign card 2
+    topCard = deck.pop();
 
+    card2[0] = cardname[topCard];
+    card2[1] = rank[topCard];
+
+}
+
+
+function hit() {
+
+    // draw the top card, assign card3
+    let topCard = deck.pop();
+
+    card3[0] = cardname[topCard];
+    card3[1] = rank[topCard];
+
+    // evaulate if inBetween
+    isBetween = (card3[1] > Math.min(card1[1], card2[1])) && (card3[1] < Math.max(card1[1], card2[1]));
     if (isBetween) {
-        return { card3, message: "Card is between" };
-    } else {
-        return { card3, message: "Card is not between" };
+        alert("you win ;(");
     }
-}
-
-// Section 2: Displaying
-
-// Function to handle dealing two cards
-function handleDealTwoCards() {
-    const result = dealTwoCards(deck);
-    if (result) {
-        drawnCards.push(result.card1, result.card2);
-        displayCard(result.card1);
-        displayCard(result.card2);
+    else {
+        alert("you lose");
     }
-}
-
-// Function to handle dealing one card and checking if it's between the previous two
-function handleDealOneCard() {
-    const result = dealOneCard(deck, drawnCards[0], drawnCards[1]);
-    if (result) {
-        drawnCards.push(result.card3);
-        displayCard(result.card3);
-    }
-}
-
-// Function to display a card image
-function displayCard(card) {
-    const cardDisplayArea = document.getElementById("cardDisplayArea");
-    const imageElement = document.createElement("img");
-    imageElement.src = card;
-    imageElement.alt = "Card Image";
-    cardDisplayArea.appendChild(imageElement);
 }
