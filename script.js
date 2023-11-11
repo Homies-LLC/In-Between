@@ -28,16 +28,16 @@ for (i=0;i<52;i++) {
 let cardname = [];
 for (i=0;i<52;i++) {
     if (i <= 12) {
-        cardname.push(JSON.stringify(i+2) + '_of_spades');
+        cardname.push('Cards PNG/' + JSON.stringify(i+2) + '_of_spades.png');
     }
     else if (i <= 25) {
-        cardname.push(JSON.stringify(i + 2 - 13) + '_of_clubs');
+        cardname.push('Cards PNG/' + JSON.stringify(i + 2 - 13) + '_of_clubs.png');
     }
     else if (i <= 38) {
-        cardname.push(JSON.stringify(i + 2 - 13 - 13) + '_of_diamonds');
+        cardname.push('Cards PNG/' + JSON.stringify(i + 2 - 13 - 13) + '_of_diamonds.png');
     }
     else if (i <= 51) {
-        cardname.push(JSON.stringify(i + 2 - 13 - 13 - 13) + '_of_hearts');
+        cardname.push('Cards PNG/' + JSON.stringify(i + 2 - 13 - 13 - 13) + '_of_hearts.png');
     }
 }
 
@@ -56,10 +56,16 @@ let isBetween = true;
 
 // shuffle the deck
 shuffle();
+// clear card pictures
+//document.getElementById("imgCard1").src = '';
+//document.getElementById("imgCard2").src = '';
+//document.getElementById("imgCard3").src = '';
+
 
 //*****************//
 //    functions    //
 //*****************//
+
 
 function shuffle() {
     for (let i = deck.length - 1; i > 0; i--) {
@@ -99,14 +105,19 @@ function deal() {
         }
     }
 
+    // display card1
+    document.getElementById("imgCard1").src = card1[0];
+
     // draw new top card, assign card 2
     topCard = deck.pop();
 
     card2[0] = cardname[topCard];
     card2[1] = rank[topCard];
 
-}
+    // display card2
+    document.getElementById("imgCard2").src = card2[0];
 
+}
 
 function hit() {
 
