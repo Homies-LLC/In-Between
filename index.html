@@ -7,9 +7,7 @@
     <title>In Between</title>
 </head>
 <body>
-
-    <!-- Game Start Screen -->
-    <div class="start-screen" id="start-screen">
+    <div class="start-screen">
         <pre>                                                                                                  
                ,---,                          ,---,.               ___                                                  
             ,`--.' |                        ,'  .'  \            ,--.'|_                                                
@@ -30,23 +28,6 @@
         </pre>
         <button onclick="startGame()">Start Game</button>
     </div>
-
-    <!-- Game Content -->
-    <div class="container hidden" id="game-container">
-        <button onclick="displayCurrentPlayerCards()">Deal Two Cards</button>
-        <button onclick="displayCurrentPlayerNewCard()">Deal One Card</button>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-    </div>
-
-    <div class="container">
-        <img id="currentPlayerCard1" alt="Card 1">
-        <img id="currentPlayerCard2" alt="Card 2">
-    </div>
-    
-    <div class="container">
-        <img id="currentPlayerNewCard" alt="New Card">
-    </div>
-    
     <script src="index.js"></script>   
 </body>
 </html>

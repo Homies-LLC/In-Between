@@ -1,5 +1,9 @@
-/* Apply a pixelated font for that retro feel */
+/*****************/
+/*    GENERAL    */
+/*****************/
+
 body {
+  /* Apply a pixelated font for that retro feel */
   font-family: 'Press Start 2P', cursive;
   display: flex;
   flex-direction: column;
@@ -7,16 +11,9 @@ body {
   justify-content: center;
   height: 100vh; /* Set the body height to 100% of the viewport height */
   margin: 0;
-}
-
-/* Apply a Zork-style background */
-body {
+  /* Apply a Zork-style background */
   background-color: #000;
   color: #fff;
-  overflow: hidden;
-  /* Replace the path with your background image */
-  background-image: url('path/to/your/background-image.jpg');
-  background-repeat: repeat; /* Adjust based on your background image */
 }
 
 /* Style the button to look like a DOS command */
@@ -39,32 +36,26 @@ button:hover {
 
 /* Style for container */
 .container {
-  display: flex;
   flex-direction: row; /* Change to row */
-  align-items: center;
-  justify-content: center;
-  height: 400px; /* Increased container height */
+  height: 25vh; /* Set the height to 25% viewpoer height */
 }
+
+
+/********************/
+/*    index.html    */
+/********************/
 
 /* Style for the start screen */
 .start-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
   margin-top: 20px; /* Added margin to create space between title art and button */
-}
-
-/* Larger font for the title art */
-.start-screen pre {
   font-size: 24px; /* Adjust the font size as needed */
 }
 
-/* Hide elements with the 'hidden' class */
-.hidden {
-  display: none;
-}
+
+/************************/
+/*    inbetween.html    */
+/************************/
 
 /* Style for images */
 img {
@@ -72,30 +63,4 @@ img {
   height: 450px; /* Increased height of the cards */
   margin: 10px;
   display: none;
-}
-
-/* Style for the start screen */
-.start-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-/* Larger font for the title art */
-.start-screen pre {
-  font-size: 24px; /* Adjust the font size as needed */
-}
-
-/* Hide elements with the 'hidden' class */
-.hidden {
-  display: none;
-}
-
-/* Moblie view set-up */
-@media only screen and (max-width: 600px) {
-  header, main, footer {
-      padding: 10px;
-  }
 }
