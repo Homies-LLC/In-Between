@@ -9,13 +9,11 @@ body {
   background-color: #000;
   color: #fff;
   overflow: hidden;
-  background-image: url('path/to/your/background-image.jpg');
   background-repeat: repeat;
 }
 
 a {
   padding: 40px;
-  font-family: 'Press Start 2P', cursive;
   font-size: 28px;
   cursor: pointer;
   border-radius: 4px;
@@ -26,7 +24,6 @@ button {
   border: 1px solid #fff;
   color: #fff;
   padding: 40px;
-  font-family: 'Press Start 2P', cursive;
   font-size: 28px;
   cursor: pointer;
   border-radius: 4px;
@@ -35,15 +32,6 @@ button {
 button:hover {
   background-color: #fff;
   color: #000;
-}
-
-#cardDisplayArea {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 400px;
 }
 
 .container {
@@ -55,8 +43,7 @@ button:hover {
 }
 
 img {
-  width: 300px;
-  height: 450px;
+  height: 40vh; /* 40% of viewport height */
   margin: 10px;
 }
 
