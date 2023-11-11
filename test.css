@@ -1,0 +1,16 @@
+div {
+    background-color: #ece2e2;
+    border: 5px solid #ee1212;
+    border-radius: 4px;
+    padding: 40px; /* Increased padding for larger button */
+    font-size: 28px; /* Increased font size for larger button */
+    /* width: 50vw; /* 50% viewport width */
+    height: 20vh; /* 20% viewport height */
+    flex-direction: row;
+}
+
+
+body {
+    flex-direction: row;
+    height: 100vh;
+}

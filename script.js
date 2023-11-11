@@ -47,7 +47,7 @@ let card2 = [];
 let card3 = [];
 
 // bools
-let isBetween = true;
+let win = false;
 
 
 //********************//
@@ -119,7 +119,7 @@ function deal() {
 
 }
 
-async function hit() {
+function hit() {
 
     // draw the top card, assign card3
     let topCard = deck.pop();
@@ -130,13 +130,25 @@ async function hit() {
     // display card 3
     document.getElementById("imgCard3").src = card3[0];
 
+    // check for card 1 = card 2
+    if (card1[1] == card2[1]) {
+        // prompt player
+        choiceIsAbove = window.confirm("above or below? Ok = above Cancel = below.");
+        if (choiceIsAbove) {
+            win = card3[1] > card1[1];
+        } 
+        else
+            win = card3[1] < card1[1];
+    }
+    else 
     // evaulate if inBetween
-    let value = await 300000;
-    isBetween = (card3[1] > Math.min(card1[1], card2[1])) && (card3[1] < Math.max(card1[1], card2[1]));
-    if (isBetween) {
+    win = (card3[1] > Math.min(card1[1], card2[1])) && (card3[1] < Math.max(card1[1], card2[1]));
+    if (win) {
         window.confirm("you win ;(");
     }
     else {
         window.confirm("you lose");
     }
+    
 }
+
