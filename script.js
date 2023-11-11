@@ -23,7 +23,7 @@ function shuffleDeck(deck) {
 }
 
 // ** Function to draw two cards from the deck **
-function drawTwoCards(deck) {
+function dealTwoCards(deck) {
     if (deck.length < 2) {
         console.log("Not enough cards in the deck to draw two cards.");
         return;
@@ -50,57 +50,5 @@ function dealOneCard(deck, card1, card2) {
         return { card3, message: "Card is between" };
     } else {
         return { card3, message: "Card is not between" };
-    }
-}
-
-//Section 2: Currency / Wallet / Ante
-
-
-//Section 3: Game Start & HTML Display
-
-// Function to start the game
-function startGame() {
-    // Hide the start screen
-    document.getElementById('start-screen').style.display = 'none';
-
-    // Show the game content
-    const gameContainer = document.getElementById('game-container');
-    gameContainer.style.display = 'flex';
-    gameContainer.classList.remove('hidden');
-}
-
-// Displaying
-function displayCurrentPlayerCards() {
-    // Clear out the currently displayed cards
-    document.getElementById('currentPlayerCard1').src = '';
-    document.getElementById('currentPlayerCard2').src = '';
-    document.getElementById('currentPlayerNewCard').src = ''; // Clear the new card as well
-
-    // Deal and display the new cards
-    const currentPlayer = dealTwoCards(myDeck);
-
-    if (currentPlayer) {
-        document.getElementById('currentPlayerCard1').src = currentPlayer[0];
-        document.getElementById('currentPlayerCard2').src = currentPlayer[1];
-
-        // Show the card images after dealing
-        document.getElementById('currentPlayerCard1').style.display = 'inline-block';
-        document.getElementById('currentPlayerCard2').style.display = 'inline-block';
-        document.getElementById('currentPlayerNewCard').style.display = 'none'; // Hide the new card initially
-    }
-}
-
-function displayCurrentPlayerNewCard() {
-    // Clear out the currently displayed new card
-    document.getElementById('currentPlayerNewCard').src = '';
-
-    // Deal and display the new card
-    const newCard = dealOneCard(myDeck);
-
-    if (newCard) {
-        document.getElementById('currentPlayerNewCard').src = newCard[0];
-
-        // Show the new card image after dealing
-        document.getElementById('currentPlayerNewCard').style.display = 'inline-block';
     }
 }
