@@ -117,6 +117,12 @@ function deal() {
     // display card2
     document.getElementById("imgCard2").src = card2[0];
 
+    // update text
+    document.getElementById('textBox').textContent = "";
+
+    // clear card 3 image
+    document.getElementById("imgCard3").src = '';
+
 }
 
 function hit() {
@@ -144,11 +150,12 @@ function hit() {
     // evaulate if inBetween
     win = (card3[1] > Math.min(card1[1], card2[1])) && (card3[1] < Math.max(card1[1], card2[1]));
     if (win) {
-        window.confirm("you win ;(");
+        // update text
+        document.getElementById('textBox').textContent = "You Win!";
     }
     else {
-        window.confirm("you lose");
+        // update text
+        document.getElementById('textBox').textContent = "You Lose";
     }
     
 }
-
