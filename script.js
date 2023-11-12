@@ -60,6 +60,12 @@ let waitingForRespose = false;
 
 // shuffle the deck
 shuffle();
+// button display settings
+document.getElementById("aoBBButtons").style.display = "none"
+document.getElementById("aoBAButtons").style.display = "none"
+document.getElementById("aHoLHButtons").style.display = "none"
+document.getElementById("aHoLLButtons").style.display = "none"
+document.getElementById("hitButton").style.display = "none"
 
 
 //*****************//
@@ -96,15 +102,16 @@ function deal() {
     document.getElementById('textBox').textContent = "";
     
     //clear buttons
-document.getElementsById("aoBBButtons"); button.style.display = "none"
-document.getElementsById("aoBAButtons"); button.style.display = "none"     
-document.getElementsById("aHoLHButtons"); button.style.display = "none"
-document.getElementsById("aHoLLButtons"); button.style.display = "none"
-document.getElementsById("hitButton"); button.style.display = "block"
+    document.getElementById("aoBBButtons").style.display = "none"
+    document.getElementById("aoBAButtons").style.display = "none"     
+    document.getElementById("aHoLHButtons").style.display = "none"
+    document.getElementById("aHoLLButtons").style.display = "none"
+    document.getElementById("hitButton").style.display = "block"
 
     // check if we have enough cards to continue
     if (deck.length <= 2) {
         document.getElementById('textBox').textContent = "Out of cards. New Deck!"
+        document.getElementById("hitButton").style.display = "none"
         resetDeck();
         return null;
     }
@@ -121,9 +128,9 @@ document.getElementsById("hitButton"); button.style.display = "block"
     if (card1[1] == 14) {
         // prompt user to choose high or low
         document.getElementById('textBox').textContent = "High or Low?"
-        document.getElementsById("hitButton"); button.style.display = "none"
-        document.getElementsById("aHoLHButtons"); button.style.display = "block"
-        document.getElementsById("aHoLLButtons"); button.style.display = "block"
+        document.getElementById("hitButton").style.display = "none"
+        document.getElementById("aHoLHButtons").style.display = "block"
+        document.getElementById("aHoLLButtons").style.display = "block"
         return null;
     }
     
@@ -138,8 +145,9 @@ document.getElementsById("hitButton"); button.style.display = "block"
     // check for pair
     if (card1[1] == card2[1]) {
         document.getElementById('textBox').textContent = "Above or Below?";
-        document.getElementsById("aoBBButtons"); button.style.display = "block"
-        document.getElementsById("aoBAButtons"); button.style.display = "block"
+        document.getElementById("aoBBButtons").style.display = "block"
+        document.getElementById("aoBAButtons").style.display = "block"
+        document.getElementById("hitButton").style.display = "none"
         // this will stop the player from hitting
         waitingForRespose = true;
     }
@@ -240,7 +248,9 @@ function pr_AHoL_H() {
     
     // prompt player
     document.getElementById('textBox').textContent = "Hit?"
-    document.getElementsById("hitButton"); button.style.display = "block"
+    document.getElementById("hitButton").style.display = "block"
+    document.getElementById("aHoLHButtons").style.display = "none"
+    document.getElementById("aHoLLButtons").style.display = "none"
 
     // unlock the hit function
     waitingForRespose = false;
@@ -251,7 +261,7 @@ function pr_AHoL_L() {
 
     // draw a top card off the deck, assign card 2 its values
     let topCard = deck.pop();
-    card2[0] = cardname[topCard];id
+    card2[0] = cardname[topCard];
     card2[1] = rank[topCard];
     
     // Ace is now low, needed to determine player win/lose
@@ -262,7 +272,9 @@ function pr_AHoL_L() {
 
     // prompt player
     document.getElementById('textBox').textContent = "Hit?"
-    document.getElementsById("hitButton").button.style.display = "block"
+    document.getElementById("hitButton").style.display = "block"
+    document.getElementById("aHoLHButtons").style.display = "none"
+    document.getElementById("aHoLLButtons").style.display = "none"
     
     // unlock the hit function
     waitingForRespose = false;
@@ -274,14 +286,14 @@ function pr_AHoL_L() {
 
 
 
-//document.getElementsById("aoBBButtons").button.style.display = "block"
-//document.getElementsById("aoBAButtons").button.style.display = "block"
-//document.getElementsById("aHoLHButtons").button.style.display = "block"
-//document.getElementsById("aHoLLButtons").button.style.display = "block"
-//document.getElementsById("hitButton").button.style.display = "block"
+//document.getElementById("aoBBButtons").style.display = "block"
+//document.getElementById("aoBAButtons").style.display = "block"
+//document.getElementById("aHoLHButtons").style.display = "block"
+//document.getElementById("aHoLLButtons").style.display = "block"
+//document.getElementById("hitButton").style.display = "block"
 
-//document.getElementsById("aoBBButtons").button.style.display = "none"
-//document.getElementsById("aoBBAuttons").button.style.display = "none"
-//document.getElementsById("aHoLHButtons").button.style.display = "none"
-//document.getElementsById("aHoLLButtons").button.style.display = "none"
-//document.getElementsById("hitButton").button.style.display = "none"
+//document.getElementById("aoBBButtons").style.display = "none"
+//document.getElementById("aoBAButtons").style.display = "none"
+//document.getElementById("aHoLHButtons").style.display = "none"
+//document.getElementById("aHoLLButtons").style.display = "none"
+//document.getElementById("hitButton").style.display = "none"
