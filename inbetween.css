@@ -40,6 +40,7 @@ button:hover {
   background-color: #fff;
   color: #000;
 }
+
 /* shared settings for the 5 'rows' that the screen is divided into */
 .row1, .row2, .row3, .row4, .row5 {
   position: fixed; /* stops the row from sliding around */
@@ -48,30 +49,33 @@ button:hover {
   justify-content: center; /* center items in our rows */
   width: 100vw; /* our row width = 100% screen width */
 }
+
 /* unique settings for row1, textbox row */
 .row1 {
-  height: 10vh; /* 10% of screen height */
-  top: 0; /* place row1 at top of screen */
+  height: 20vh; /* 10% of screen height */
+  top: 0vh; /* place row1 at top of screen */
+  text-align: center;
+  flex-direction: column; /* place items in our rows from left to right */
 }
 /* unique settings for row2, deal button row */
 .row2 {
   height: 10vh; /* 10% of screen height */
-  top: 10vh; /* place row2 10vh from top of screen (bottom of row1) */
+  top: 20vh; /* place row2 10vh from top of screen (bottom of row1) */
 }
 /* unique settings for row3, hit & option buttons row */
 .row3 {
     height: 10vh; /* 10% of screen height */
-    top: 20vh; /* place row3 20vh from top of screen (bottom of row2) */
+    top: 30vh; /* place row3 20vh from top of screen (bottom of row2) */
 }
 /* unique settings for row4, dealt cards row */
 .row4 {
     height: 35vh; /* 35% of screen height */
-    top: 30vh; /* place row4 30vh from top of screen (bottom of row3) */
+    top: 40vh; /* place row4 30vh from top of screen (bottom of row3) */
 }
 /* unique settings for row5, hit card row */
 .row5 {
     height: 35vh; /* 35% of screen height */
-    top: 50vh; /* place row5 50vh from top of screen (intentional overlap on row4) */
+    top: 48vh; /* place row5 50vh from top of screen (intentional overlap on row4) */
 }
 /* card image settings */
 img {
@@ -84,6 +88,6 @@ img {
 /* additional settings for mobile */
 @media screen and (max-width: 800px){
   body {
-    font-size: 24px;
+    font-size: 20px;
   }
 }
