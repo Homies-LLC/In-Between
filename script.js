@@ -61,12 +61,7 @@ let waitingForRespose = false;
 // shuffle the deck
 shuffle();
 // button display settings
-document.getElementById("aoBBButtons").style.display = "none"
-document.getElementById("aoBAButtons").style.display = "none"
-document.getElementById("aHoLHButtons").style.display = "none"
-document.getElementById("aHoLLButtons").style.display = "none"
-document.getElementById("hitButton").style.display = "none"
-
+hideAllButtons();
 
 //*****************//
 //    Game Logic   //
@@ -102,17 +97,15 @@ function deal() {
     document.getElementById('textBox').textContent = "";
     
     //clear buttons
-    document.getElementById("aoBBButtons").style.display = "none"
-    document.getElementById("aoBAButtons").style.display = "none"     
-    document.getElementById("aHoLHButtons").style.display = "none"
-    document.getElementById("aHoLLButtons").style.display = "none"
+    hideAllButtons();
+
     //show hit button
-    document.getElementById("hitButton").style.display = "block"
+    showHitButton();
 
     // check if we have enough cards to continue
     if (deck.length <= 2) {
         document.getElementById('textBox').textContent = "Out of cards. New Deck!"
-        document.getElementById("hitButton").style.display = "none"
+        hideAllButtons()
         resetDeck();
         return null;
     }
@@ -129,9 +122,7 @@ function deal() {
     if (card1[1] == 14) {
         // prompt user to choose high or low
         document.getElementById('textBox').textContent = "High or Low?"
-        document.getElementById("hitButton").style.display = "none"
-        document.getElementById("aHoLHButtons").style.display = "block"
-        document.getElementById("aHoLLButtons").style.display = "block"
+        showAHoLButtons();
         return null;
     }
     
@@ -146,9 +137,7 @@ function deal() {
     // check for pair
     if (card1[1] == card2[1]) {
         document.getElementById('textBox').textContent = "Above or Below?";
-        document.getElementById("aoBBButtons").style.display = "block"
-        document.getElementById("aoBAButtons").style.display = "block"
-        document.getElementById("hitButton").style.display = "none"
+        showAoBButtons();
         // this will stop the player from hitting
         waitingForRespose = true;
     }
@@ -196,21 +185,13 @@ function hit() {
         // update text
         document.getElementById('textBox').textContent = "You Win!";
         // hide all buttons except deal
-        document.getElementById("hitButton").style.display = "none"
-        document.getElementById("aoBBButtons").style.display = "none"
-        document.getElementById("aoBAButtons").style.display = "none"     
-        document.getElementById("aHoLHButtons").style.display = "none"
-        document.getElementById("aHoLLButtons").style.display = "none"
+        hideAllButtons();
     }
     else {
         // update text
         document.getElementById('textBox').textContent = "You Lose";
         // hide all buttons except deal
-        document.getElementById("hitButton").style.display = "none"
-        document.getElementById("aoBBButtons").style.display = "none"
-        document.getElementById("aoBAButtons").style.display = "none"     
-        document.getElementById("aHoLHButtons").style.display = "none"
-        document.getElementById("aHoLLButtons").style.display = "none"
+     hideAllButtons();
     }
 
     // locks hit function from being called again until deal is called
@@ -261,7 +242,7 @@ function pr_AHoL_H() {
     
     // prompt player
     document.getElementById('textBox').textContent = ""
-    document.getElementById("hitButton").style.display = "block"
+    showHitButton();
     document.getElementById("aHoLHButtons").style.display = "none"
     document.getElementById("aHoLLButtons").style.display = "none"
 
@@ -286,7 +267,7 @@ function pr_AHoL_L() {
 
     // prompt player
     document.getElementById('textBox').textContent = ""
-    document.getElementById("hitButton").style.display = "block"
+    showHitButton();
     document.getElementById("aHoLHButtons").style.display = "none"
     document.getElementById("aHoLLButtons").style.display = "none"
     
@@ -299,7 +280,33 @@ function pr_AHoL_L() {
 
 
 
+function hideAllButtons() {
+document.getElementById("aoBBButtons").style.display = "none"
+document.getElementById("aoBAButtons").style.display = "none"
+document.getElementById("aHoLHButtons").style.display = "none"
+document.getElementById("aHoLLButtons").style.display = "none"
+document.getElementById("hitButton").style.display = "none"
 
+}
+
+function showAoBButtons() {
+document.getElementById("hitButton").style.display = "none"
+document.getElementById("aoBAButtons").style.display = "block"
+document.getElementById("aoBBButtons").style.display = "block"
+
+}
+
+function showAHoLButtons() {
+document.getElementById("hitButton").style.display = "none"
+document.getElementById("aHoLHButtons").style.display = "block"
+document.getElementById("aHoLLButtons").style.display = "block"
+
+}
+
+function showHitButton() {
+document.getElementById("hitButton").style.display = "block"
+
+}
 
 //document.getElementById("aoBBButtons").style.display = "block"
 //document.getElementById("aoBAButtons").style.display = "block"
