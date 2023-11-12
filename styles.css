@@ -5,17 +5,16 @@
 
 /* When the browser is at least 600px and above */
 @media screen and (min-width: 600px) {
-  .element { margin: 0;
 
-  }
+.element { 
+  margin: 0;
+}
 
 html {
   font-family: 'Press Start 2P', cursive; 
 }
 
 body {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -46,6 +45,7 @@ button {
   cursor: pointer;
   border-radius: 4px;
   outline: 0;
+  margin: 20px;
 }
 
 button:hover {
@@ -53,15 +53,28 @@ button:hover {
   color: #000;
 }
 
-.container {
+
+
+.row1, .row2, .row3,.row4, .row5 {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
-  height: 400px;
+  height: 20vh;
 }
 
+.row1, .row2, .row3{
+  height: 10vh;
+  align-items: center;
+}
+
+.row4 {
+  align-items: baseline;
+}
+
+
 img {
+  position: relative;
+  top: 0;
   height: 40vh; /* 40% of viewport height */
   margin: 10px;
 }
@@ -73,5 +86,9 @@ align-items: center;
 justify-content: center;
 text-align: center;
 margin-top: 20px;
+}
+
+ #textBox {
+  font-size: 4em;
 }
 }
