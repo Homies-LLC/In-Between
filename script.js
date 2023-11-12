@@ -106,6 +106,7 @@ function deal() {
     document.getElementById("aoBAButtons").style.display = "none"     
     document.getElementById("aHoLHButtons").style.display = "none"
     document.getElementById("aHoLLButtons").style.display = "none"
+    //show hit button
     document.getElementById("hitButton").style.display = "block"
 
     // check if we have enough cards to continue
@@ -194,10 +195,14 @@ function hit() {
     if (win) {
         // update text
         document.getElementById('textBox').textContent = "You Win!";
+        // hide hit button
+        document.getElementById("hitButton").style.display = "none"
     }
     else {
         // update text
         document.getElementById('textBox').textContent = "You Lose";
+        // hide hit button
+        document.getElementById("hitButton").style.display = "none"
     }
 
     // locks hit function from being called again until deal is called
