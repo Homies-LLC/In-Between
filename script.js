@@ -48,6 +48,9 @@ let card3 = [];
 
 // bools
 let win = false;
+let cardAlreadyHit = false;
+let choiceIsAbove = false;
+let waitingForRespose = false;
 
 
 //********************//
@@ -104,7 +107,7 @@ function deal() {
             card1[1] = 1;
         }
     }
-
+    
     // display card1
     document.getElementById("imgCard1").src = card1[0];
 
@@ -122,10 +125,24 @@ function deal() {
 
     // clear card 3 image
     document.getElementById("imgCard3").src = '';
-
+    
+    if (card1[1] == card2[1]) {
+        document.getElementById('textBox').textContent = "above or below?";
+        waitingForRespose = true;
+    }
+    cardAlreadyHit = false;
 }
 
 function hit() {
+    if (cardAlreadyHit == true) {
+        //update text
+        document.getElementById('textBox').textContent = "Please deal again"; 
+        return null;
+    }
+    
+    if (waitingForRespose == true) {
+    return null;
+    }
 
     // draw the top card, assign card3
     let topCard = deck.pop();
@@ -138,8 +155,6 @@ function hit() {
 
     // check for card 1 = card 2
     if (card1[1] == card2[1]) {
-        // prompt player
-        choiceIsAbove = window.confirm("above or below? Ok = above Cancel = below.");
         if (choiceIsAbove) {
             win = card3[1] > card1[1];
         } 
@@ -157,5 +172,16 @@ function hit() {
         // update text
         document.getElementById('textBox').textContent = "You Lose";
     }
-    
+    cardAlreadyHit = true;
+}
+
+
+function buttonAbove() {
+    choiceIsAbove = true;
+    hit();
+}
+
+function buttonBelow() {
+    choiceisAbove = false;
+    hit();
 }
