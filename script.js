@@ -195,14 +195,22 @@ function hit() {
     if (win) {
         // update text
         document.getElementById('textBox').textContent = "You Win!";
-        // hide hit button
+        // hide all buttons except deal
         document.getElementById("hitButton").style.display = "none"
+        document.getElementById("aoBBButtons").style.display = "none"
+        document.getElementById("aoBAButtons").style.display = "none"     
+        document.getElementById("aHoLHButtons").style.display = "none"
+        document.getElementById("aHoLLButtons").style.display = "none"
     }
     else {
         // update text
         document.getElementById('textBox').textContent = "You Lose";
-        // hide hit button
+        // hide all buttons except deal
         document.getElementById("hitButton").style.display = "none"
+        document.getElementById("aoBBButtons").style.display = "none"
+        document.getElementById("aoBAButtons").style.display = "none"     
+        document.getElementById("aHoLHButtons").style.display = "none"
+        document.getElementById("aHoLLButtons").style.display = "none"
     }
 
     // locks hit function from being called again until deal is called
@@ -252,7 +260,7 @@ function pr_AHoL_H() {
     document.getElementById("imgCard2").src = card2[0]
     
     // prompt player
-    document.getElementById('textBox').textContent = "Hit?"
+    document.getElementById('textBox').textContent = ""
     document.getElementById("hitButton").style.display = "block"
     document.getElementById("aHoLHButtons").style.display = "none"
     document.getElementById("aHoLLButtons").style.display = "none"
@@ -276,7 +284,7 @@ function pr_AHoL_L() {
     document.getElementById("imgCard2").src = card2[0]
 
     // prompt player
-    document.getElementById('textBox').textContent = "Hit?"
+    document.getElementById('textBox').textContent = ""
     document.getElementById("hitButton").style.display = "block"
     document.getElementById("aHoLHButtons").style.display = "none"
     document.getElementById("aHoLLButtons").style.display = "none"
