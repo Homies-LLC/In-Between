@@ -3,9 +3,57 @@
   src: url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 }
 
-/* When the browser is at least 600px and above */
-@media screen and (min-width: 600px) {
+/* When the browser is over 800px */
+@media screen and (max-width: 800px) {
+  body {
+    font-size: 0.5em;
+  }
+  a {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 1px;
+  }
+  button {
+    font-size: 7px;
+    padding: 10px;
+    border-radius: 1px;
+    font-family: inherit;
+    margin:5px;
+  }
+  img {
+    margin:5px;
+    height: 400px;
+  }
+  
+ #textBox {
+  font-size: 2em;
+}
+}
 
+/* When the browser is over 800px */
+@media screen and (min-width: 801px) {
+  body {
+    font-size: 1em;
+  }
+  a {
+    font-size: 28px;
+    padding: 120x;
+    border-radius: 2px;
+  }
+  button {
+    font-size: 14px;
+    padding: 20px;
+    border-radius: 2px;
+    font-family: inherit;
+    margin:10px;
+  }
+  img {
+    margin:10px;
+    height: 800px;
+  }
+ #textBox {
+  font-size: 4em;
+}
 }
 
 .element { 
@@ -28,10 +76,7 @@ body {
 }
 
 a {
-  padding: 40px;
-  font-size: 28px;
   cursor: pointer;
-  border-radius: 4px;
   text-decoration: none;
   color: #fff;
   border: 1px solid #fff;
@@ -42,12 +87,8 @@ button {
   background-color: #000;
   border: 1px solid #fff;
   color: #fff;
-  padding: 40px;
-  font-size: 28px;
   cursor: pointer;
-  border-radius: 4px;
   outline: 0;
-  margin: 20px;
 }
 
 button:hover {
@@ -60,7 +101,6 @@ button:hover {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 20vh;
 }
 
 .row1, .row2, .row3{
@@ -72,12 +112,14 @@ button:hover {
   align-items: baseline;
 }
 
+.row5 {
+  height: 20vh;
+}
+
 
 img {
   position: relative;
   top: 0;
-  height: 40vh; /* 40% of viewport height */
-  margin: 10px;
 }
 
 .start-screen {
@@ -89,7 +131,4 @@ text-align: center;
 margin-top: 20px;
 }
 
- #textBox {
-  font-size: 4em;
-}
 
