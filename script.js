@@ -267,6 +267,7 @@ function pr_AHoL_H() {
 
     // unlock the hit function
     waitingForRespose = false;
+    cardAlreadyHit = false;
 }
 
 // player response, ace high or low? Low
@@ -291,6 +292,7 @@ function pr_AHoL_L() {
     
     // unlock the hit function
     waitingForRespose = false;
+    cardAlreadyHit = false;
 }
 
 
