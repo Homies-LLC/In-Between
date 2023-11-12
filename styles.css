@@ -1,5 +1,19 @@
+@font-face {
+  font-family:'Press Start 2P';
+  src: url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+}
+
+/* When the browser is at least 600px and above */
+@media screen and (min-width: 600px) {
+  .element { margin: 0;
+
+  }
+
+html {
+  font-family: 'Press Start 2P', cursive; 
+}
+
 body {
-  font-family: 'Press Start 2P', cursive;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,9 +31,13 @@ a {
   font-size: 28px;
   cursor: pointer;
   border-radius: 4px;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #fff;
 }
 
 button {
+  font-family: inherit;
   background-color: #000;
   border: 1px solid #fff;
   color: #fff;
@@ -27,6 +45,7 @@ button {
   font-size: 28px;
   cursor: pointer;
   border-radius: 4px;
+  outline: 0;
 }
 
 button:hover {
@@ -54,4 +73,5 @@ align-items: center;
 justify-content: center;
 text-align: center;
 margin-top: 20px;
+}
 }
