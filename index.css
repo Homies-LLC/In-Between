@@ -1,0 +1,47 @@
+/* set the font for the page */
+@font-face {
+    font-family:'Press Start 2P';
+    src: url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+}
+/* more font settings? */
+html {
+  font-family: 'Press Start 2P', cursive; 
+}
+/* body settings  */
+body {
+  /* zork theme */
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+  background-repeat: repeat;
+  /* set base font size, this can be overridden by other elements inside body */
+  font-size: calc(12px + 0.75vw); /* scale based on screen size, start at 14 add 0.75% of windows width */
+}
+
+/* link settings */
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #fff;
+    font-size: 2em; /* 1x the size of the body font, which is set to scale on screen size */
+    border-radius: 5px;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+
+}
+
+.start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}

@@ -1,0 +1,81 @@
+/* set the font for the page */
+@font-face {
+    font-family:'Press Start 2P';
+    src: url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+}
+/* more font settings? */
+html {
+  font-family: 'Press Start 2P', cursive; 
+}
+/* body settings  */
+body {
+  /* zork theme */
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+  background-repeat: repeat;
+  /* set base font size, this can be overridden by other elements inside body */
+  font-size: calc(16px + 4vw); /* scale based on screen size, start at 16 add 4% of windows width */
+}
+/* button design */
+button {
+  font-family: inherit; /* force button to use our  font */
+  background-color: #000;
+  border: 1px solid #fff;
+  color: #fff; /* font color */
+  cursor: pointer; /* change cursor style when hovering */
+  outline: 0;
+  font-size: 25%; /* button font is 25% the size of the body font, body font scales on screen size */
+  padding: 20px;
+  margin: 10px;
+}
+/* change button color on hover */
+button:hover {
+  background-color: #fff;
+  color: #000;
+}
+/* shared settings for the 5 'rows' that the screen is divided into */
+.row1, .row2, .row3, .row4, .row5 {
+  position: fixed; /* stops the row from sliding around */
+  display: flex; /* allows items inside our rows to move to not overlap other items */
+  flex-direction: row; /* place items in our rows from left to right */
+  justify-content: center; /* center items in our rows */
+  width: 100vw; /* our row width = 100% screen width */
+}
+/* unique settings for row1, textbox row */
+.row1 {
+  height: 10vh; /* 10% of screen height */
+  top: 0; /* place row1 at top of screen */
+}
+/* unique settings for row2, deal button row */
+.row2 {
+  height: 10vh; /* 10% of screen height */
+  top: 10vh; /* place row2 10vh from top of screen (bottom of row1) */
+}
+/* unique settings for row3, hit & option buttons row */
+.row3 {
+    height: 10vh; /* 10% of screen height */
+    top: 20vh; /* place row3 20vh from top of screen (bottom of row2) */
+}
+/* unique settings for row4, dealt cards row */
+.row4 {
+    height: 35vh; /* 35% of screen height */
+    top: 30vh; /* place row4 30vh from top of screen (bottom of row3) */
+}
+/* unique settings for row5, hit card row */
+.row5 {
+    height: 35vh; /* 35% of screen height */
+    top: 50vh; /* place row5 50vh from top of screen (intentional overlap on row4) */
+}
+/* card image settings */
+img {
+    position: relative;
+    top: 0; /* align image to the top of the row */
+    margin: 10px;
+    width: 20vw; /* card width is 20% screen width */
+}
+
