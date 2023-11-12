@@ -19,7 +19,7 @@ body {
   overflow: hidden;
   background-repeat: repeat;
   /* set base font size, this can be overridden by other elements inside body */
-  font-size: calc(16px + 4vw); /* scale based on screen size, start at 16 add 4% of windows width */
+  font-size: calc(32px + 0.25vw); /* scale based on screen size, start at 16 add 4% of windows width */
 }
 /* button design */
 button {
@@ -30,7 +30,8 @@ button {
   cursor: pointer; /* change cursor style when hovering */
   outline: 0;
   font-size: 25%; /* button font is 25% the size of the body font, body font scales on screen size */
-  padding: 20px;
+  width: 40vw; /* width is 20% of screen width */
+  max-width: 350px; /* sets a limit for how wide the width can get */
   margin: 10px;
 }
 /* change button color on hover */
@@ -78,4 +79,3 @@ img {
     margin: 10px;
     width: 20vw; /* card width is 20% screen width */
 }
-
