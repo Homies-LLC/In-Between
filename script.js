@@ -53,8 +53,7 @@ let cardAlreadyHit = false;
 let choiceIsAbove = false;
 let waitingForRespose = false;
 
-//wallet and currency
-const currency = 'USD';
+//wallet, betting and lossing
 let walletBalance = 10;
 const anteAmount = 1;
 const winAmount = 10;
@@ -123,7 +122,7 @@ function deal() {
    
     //charging the ante amount and display
     walletBalance -= anteAmount;
-    document.getElementById('walletDisplay').textContent = `Wallet: ${walletBalance} ${currency}`;
+    document.getElementById('walletDisplay').textContent = `Wallet: $${walletBalance}`;
 
 
 
@@ -205,7 +204,7 @@ function hit() {
         hideAllButtons();
         // Adjust wallet for win
         walletBalance += winAmount;
-        document.getElementById('walletDisplay').textContent = `Wallet: ${walletBalance} ${currency}`;
+        document.getElementById('walletDisplay').textContent = `Wallet: $${walletBalance}`;
     }
     else {
         // update text
@@ -214,7 +213,7 @@ function hit() {
      hideAllButtons();
      // Deduct loss amount from the wallet
      walletBalance -= lossAmount;
-     document.getElementById('walletDisplay').textContent = `Wallet: ${walletBalance} ${currency}`;
+     document.getElementById('walletDisplay').textContent = `Wallet: $${walletBalance}`;
     }
 
     // locks hit function from being called again until deal is called
