@@ -53,6 +53,13 @@ let cardAlreadyHit = false;
 let choiceIsAbove = false;
 let waitingForRespose = false;
 
+//wallet and currency
+const currency = 'USD';
+let walletBalance = 10;
+const anteAmount = 1;
+const winAmount = 10;
+const lossAmount = 5;
+
 
 //********************//
 //    Housekeeping    //
@@ -87,7 +94,11 @@ function resetDeck() {
 
 // The dealing function (deals two cards and checks for ace, if ace, it stops.)
 function deal() {
-
+    //Out of money msg
+    if (walletBalance <= 0){
+        document.getElementById('textBox').textContent = "You're Out of Money! HA!"
+   return;
+ }
     // clear all card images
     document.getElementById("imgCard1").src = '';
     document.getElementById("imgCard2").src = '';
@@ -109,7 +120,13 @@ function deal() {
         resetDeck();
         return null;
     }
-    
+   
+    //charging the ante amount and display
+    walletBalance -= anteAmount;
+    document.getElementById('walletDisplay').textContent = `Wallet: ${walletBalance} ${currency}`;
+
+
+
     // draw top card, assign card 1
     let topCard = deck.pop();
     card1[0] = cardname[topCard];
@@ -186,12 +203,18 @@ function hit() {
         document.getElementById('textBox').textContent = "You Win!";
         // hide all buttons except deal
         hideAllButtons();
+        // Adjust wallet for win
+        walletBalance += winAmount;
+        document.getElementById('walletDisplay').textContent = `Wallet: ${walletBalance} ${currency}`;
     }
     else {
         // update text
         document.getElementById('textBox').textContent = "You Lose";
         // hide all buttons except deal
      hideAllButtons();
+     // Deduct loss amount from the wallet
+     walletBalance -= lossAmount;
+     document.getElementById('walletDisplay').textContent = `Wallet: ${walletBalance} ${currency}`;
     }
 
     // locks hit function from being called again until deal is called
@@ -287,8 +310,9 @@ function pr_AHoL_L() {
 }
 
 
-
-
+//**********************************//
+//  Show and Hide Button Functions  //
+//**********************************//
 
 function hideAllButtons() {
 document.getElementById("aoBBButtons").style.display = "none"
