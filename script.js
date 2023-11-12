@@ -94,6 +94,13 @@ function deal() {
 
     // update text
     document.getElementById('textBox').textContent = "";
+    
+    //clear buttons
+document.getElementsById("aoBBButtons"); button.style.display = "none"
+document.getElementsById("aoBAButtons"); button.style.display = "none"     
+document.getElementsById("aHoLHButtons"); button.style.display = "none"
+document.getElementsById("aHoLLButtons"); button.style.display = "none"
+document.getElementsById("hitButton"); button.style.display = "block"
 
     // check if we have enough cards to continue
     if (deck.length <= 2) {
@@ -113,7 +120,10 @@ function deal() {
     // check for ace
     if (card1[1] == 14) {
         // prompt user to choose high or low
-        document.getElementById('textBox').textContent = "High or Low"
+        document.getElementById('textBox').textContent = "High or Low?"
+        document.getElementsById("hitButton"); button.style.display = "none"
+        document.getElementsById("aHoLHButtons"); button.style.display = "block"
+        document.getElementsById("aHoLLButtons"); button.style.display = "block"
         return null;
     }
     
@@ -127,7 +137,9 @@ function deal() {
 
     // check for pair
     if (card1[1] == card2[1]) {
-        document.getElementById('textBox').textContent = "above or below?";
+        document.getElementById('textBox').textContent = "Above or Below?";
+        document.getElementsById("aoBBButtons"); button.style.display = "block"
+        document.getElementsById("aoBAButtons"); button.style.display = "block"
         // this will stop the player from hitting
         waitingForRespose = true;
     }
@@ -228,6 +240,7 @@ function pr_AHoL_H() {
     
     // prompt player
     document.getElementById('textBox').textContent = "Hit?"
+    document.getElementsById("hitButton"); button.style.display = "block"
 
     // unlock the hit function
     waitingForRespose = false;
@@ -238,7 +251,7 @@ function pr_AHoL_L() {
 
     // draw a top card off the deck, assign card 2 its values
     let topCard = deck.pop();
-    card2[0] = cardname[topCard];
+    card2[0] = cardname[topCard];id
     card2[1] = rank[topCard];
     
     // Ace is now low, needed to determine player win/lose
@@ -249,7 +262,26 @@ function pr_AHoL_L() {
 
     // prompt player
     document.getElementById('textBox').textContent = "Hit?"
+    document.getElementsById("hitButton").button.style.display = "block"
     
     // unlock the hit function
     waitingForRespose = false;
 }
+
+
+
+
+
+
+
+//document.getElementsById("aoBBButtons").button.style.display = "block"
+//document.getElementsById("aoBAButtons").button.style.display = "block"
+//document.getElementsById("aHoLHButtons").button.style.display = "block"
+//document.getElementsById("aHoLLButtons").button.style.display = "block"
+//document.getElementsById("hitButton").button.style.display = "block"
+
+//document.getElementsById("aoBBButtons").button.style.display = "none"
+//document.getElementsById("aoBBAuttons").button.style.display = "none"
+//document.getElementsById("aHoLHButtons").button.style.display = "none"
+//document.getElementsById("aHoLLButtons").button.style.display = "none"
+//document.getElementsById("hitButton").button.style.display = "none"

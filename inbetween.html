@@ -12,14 +12,17 @@
     <div class="container">
         <p id="textBox">   </p>
     </div>
+    
+    <div class="container">
+    <button style="margin-right: 10px;" onclick="deal()">Deal</button>
+    </div>
 
     <div class="container">
-        <button style="margin-right: 10px;" onclick="deal()">Deal</button>
-        <button onclick="hit()">Hit</button>
-        <button style="margin-right: 10px;" onclick="pr_AoB_A()">Above</button>
-        <button onclick="pr_AoB_B()">Below</button>
-        <button style="margin-right: 10px;" onclick="pr_AHoL_H()">High</button>
-        <button onclick="pr_AHoL_L()">Low</button>
+        <button id= "hitButton" onclick= "hit()">Hit</button>
+        <button id= "aoBAButtons" style="display: none;" style="margin-right: 10px;" onclick="pr_AoB_A()">Above</button>
+        <button id= "aoBBButtons" style="display: none;" onclick="pr_AoB_B()">Below</button>
+        <button id= aHoLHButtons" style="display: none;" style="margin-right: 10px;" onclick="pr_AHoL_H()">High</button>
+        <button id= aHoLLButtons" style="display: none;" onclick="pr_AHoL_L()">Low</button>
     </div>
 
     <div class="container">
