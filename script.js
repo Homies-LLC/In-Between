@@ -175,15 +175,14 @@ function hit() {
     cardAlreadyHit = true;
 }
 
-function playerResponse(response, responseType) {
-    if (responseType == AoB) {
-        choiceIsAbove = response;
-        waitingForRespose = false;
-        hit();
-    }
-    if (responseType == AceHL) {
-        isLow = response;
-        waitingForRespose = false;
-        hit();
-    }
+function pr_AoB_A() {
+    waitingForRespose = false;
+    choiceIsAbove = true;
+    hit();
+}
+
+function pr_AoB_B() {
+    waitingForRespose = false;
+    choiceIsAbove = false;
+    hit();
 }
