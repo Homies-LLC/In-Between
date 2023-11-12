@@ -238,17 +238,27 @@ function pr_AHoL_H() {
     card2[1] = rank[topCard];
     
     // display card 2
-    document.getElementById("imgCard2").src = card2[0]
+     document.getElementById("imgCard2").src = card2[0]
+
+    // if card2 is 14 (an ace) prompt player "Below", remove hit button and show below button
+    if (card2[1] == 14) {
+        document.getElementById('textBox').textContent = "Below?"
+       hideAllButtons();
+        document.getElementById("aoBBButtons").style.display = "block"  
+    }
+
+    else {
     
     // prompt player
     document.getElementById('textBox').textContent = ""
     showHitButton();
     document.getElementById("aHoLHButtons").style.display = "none"
     document.getElementById("aHoLLButtons").style.display = "none"
-
+        
     // unlock the hit function
     waitingForRespose = false;
     cardAlreadyHit = false;
+    }
 }
 
 // player response, ace high or low? Low
@@ -307,15 +317,3 @@ function showHitButton() {
 document.getElementById("hitButton").style.display = "block"
 
 }
-
-//document.getElementById("aoBBButtons").style.display = "block"
-//document.getElementById("aoBAButtons").style.display = "block"
-//document.getElementById("aHoLHButtons").style.display = "block"
-//document.getElementById("aHoLLButtons").style.display = "block"
-//document.getElementById("hitButton").style.display = "block"
-
-//document.getElementById("aoBBButtons").style.display = "none"
-//document.getElementById("aoBAButtons").style.display = "none"
-//document.getElementById("aHoLHButtons").style.display = "none"
-//document.getElementById("aHoLLButtons").style.display = "none"
-//document.getElementById("hitButton").style.display = "none"
