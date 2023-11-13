@@ -117,7 +117,7 @@ function deal() {
     displayWallet();
 
     // draw card1 and display card1
-    displayCard1()
+    displayCard1();
 
     // check for ace
     if (card1[1] == 14) {
@@ -196,7 +196,7 @@ function hit() {
             changeTextBox("You Posted, PAY DOUBLE");
             hideAllButtons();
             walletBalance -= lossAmount * 2;
-            displayWallet();
+            displayWallet(); 
         }
         else {
             // update text
