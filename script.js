@@ -149,13 +149,12 @@ function hit() {
     if (cardAlreadyHit == true) {
         //update text
         changeTextBox("Please Deal Again");
-         
         return null;
     }
     
     // check if the player needs to give more info (ace high/low, hit above/below) exit if true
     if (waitingForRespose == true) {
-    return null;
+        return null;
     }
 
     // draw card3 and display card 3
@@ -166,13 +165,15 @@ function hit() {
         if (choiceIsAbove) {
             win = card3[1] > card1[1];
         } 
-        else
+        else {
             win = card3[1] < card1[1];
+        }
     }
-    else 
+    else {
+        // evaulate if player wins inBetween
+        win = (card3[1] > Math.min(card1[1], card2[1])) && (card3[1] < Math.max(card1[1], card2[1]));
+    }
 
-    // evaulate if player wins inBetween
-    win = (card3[1] > Math.min(card1[1], card2[1])) && (card3[1] < Math.max(card1[1], card2[1]));
     if (win) {
         // update text
         changeTextBox("You Win!");
@@ -183,13 +184,29 @@ function hit() {
         displayWallet();
     }
     else {
-        // update text
-        changeTextBox("You Lose");
-        // hide all buttons except deal
-     hideAllButtons();
-     // Deduct loss amount from the wallet
-     walletBalance -= lossAmount;
-     displayWallet();
+        // check for posting on pairs
+        if (card3[1] == card1[1] && card3[1] == card2[1]) {
+            changeTextBox("You Posted, PAY T̵̨̗̻̫̰̠̬͎̦̭͉̜̱́̍͋̕R̴̘̥͔͕͈̻͈̝̯̱͊̆̍̇̂̿̾̐͘͜Į̵̧̣̲͈̞͍̟͐̅͘ͅP̶̗̿L̷̥͕̍̾̑̉̽̍̋̊̀̈̿Ȩ̵̡̠̗̠̙̹̀̎́̎͊̈́̅̄̑!");
+            hideAllButtons();
+            walletBalance -= lossAmount * 3;
+            displayWallet();
+        }
+        //check for regular posting
+        else if (card3[1] == card1[1] || card3[1] == card2[1]) {
+            changeTextBox("You Posted, PAY DOUBLE");
+            hideAllButtons();
+            walletBalance -= lossAmount * 2;
+            displayWallet();
+        }
+        else {
+            // update text
+            changeTextBox("You Lose");
+            // hide all buttons except deal
+            hideAllButtons();
+            // Deduct loss amount from the wallet
+            walletBalance -= lossAmount;
+            displayWallet();
+        }
     }
 
     // locks hit function from being called again until deal is called
