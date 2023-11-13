@@ -107,7 +107,7 @@ function deal() {
     // check if we have enough cards to continue
     if (deck.length <= 2) {
         changeTextBox("Out of cards. New Deck!");
-        hideAllButtons()
+        hideAllButtons();
         resetDeck();
         return null;
     }
@@ -118,6 +118,7 @@ function deal() {
 
     // draw card1 and display card1
     displayCard1();
+    changeTextBox("In Between?");
 
     // check for ace
     if (card1[1] == 14) {
@@ -264,6 +265,7 @@ function pr_AHoL_H() {
     changeTextBox(" ");
     hideAllButtons();
     showHitButton();
+    changeTextBox("In Between?");
         
     // unlock the hit function
     waitingForRespose = false;
@@ -284,6 +286,7 @@ function pr_AHoL_L() {
     changeTextBox(" ");
     hideAllButtons();
     showHitButton();
+    changeTextBox("In Between?");
     
     
     // unlock the hit function
