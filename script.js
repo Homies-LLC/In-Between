@@ -1,4 +1,4 @@
-// i wrote this from my iphone - madison
+
 //****************************//
 //    initialize variables    //
 //****************************//
@@ -362,7 +362,7 @@ function displayCard2() {
 }
 
 function displayCard3() {
-    document.getElementById("imgCard3").src = card2[0]
+    document.getElementById("imgCard3").src = card3[0]
 }
 
 //wallet
