@@ -1,4 +1,4 @@
-
+// i wrote this from my iphone - madison
 //****************************//
 //    initialize variables    //
 //****************************//
