@@ -8,7 +8,7 @@ let deck = [];
 for (i=0;i<52;i++) {
     deck.push(i);
 }
-//create ranks
+// create ranks
 let rank = [];
 for (i=0;i<52;i++) {
     if (i <= 12) {
@@ -25,7 +25,7 @@ for (i=0;i<52;i++) {
     }
 }
 
-//create cardnames
+// create cardnames
 let cardname = [];
 for (i=0;i<52;i++) {
     if (i <= 12) {
@@ -53,7 +53,7 @@ let cardAlreadyHit = false;
 let choiceIsAbove = false;
 let waitingForRespose = false;
 
-//wallet, betting and lossing
+// wallet, betting and lossing
 let walletBalance = 10;
 const anteAmount = 1;
 const winAmount = 10;
@@ -95,26 +95,18 @@ function resetDeck() {
 function deal() {
     //Out of money msg
     if (walletBalance <= 0){
-        document.getElementById('textBox').textContent = "You're Out of Money! HA!"
+        changeTextBox("You're Out of Money! HA!");
    return;
  }
-    // clear all card images
-    document.getElementById("imgCard1").src = '';
-    document.getElementById("imgCard2").src = '';
-    document.getElementById("imgCard3").src = '';
-
-    // update text
-    document.getElementById('textBox').textContent = "";
-    
-    //clear buttons
+    //resetting
+    clearCards();
+    changeTextBox(" ");
     hideAllButtons();
-
-    //show hit button
     showHitButton();
 
     // check if we have enough cards to continue
     if (deck.length <= 2) {
-        document.getElementById('textBox').textContent = "Out of cards. New Deck!"
+        changeTextBox("Out of cards. New Deck!");
         hideAllButtons()
         resetDeck();
         return null;
@@ -122,9 +114,7 @@ function deal() {
    
     //charging the ante amount and display
     walletBalance -= anteAmount;
-    document.getElementById('walletDisplay').textContent = `Wallet: $${walletBalance}`;
-
-
+    displayWallet();
 
     // draw top card, assign card 1
     let topCard = deck.pop();
@@ -132,12 +122,12 @@ function deal() {
     card1[1] = rank[topCard];
  
     // display card1
-    document.getElementById("imgCard1").src = card1[0];
+    displayCard1()
 
     // check for ace
     if (card1[1] == 14) {
         // prompt user to choose high or low
-        document.getElementById('textBox').textContent = "High or Low?"
+        changeTextBox("High or Low?");
         showAHoLButtons();
         return null;
     }
@@ -148,11 +138,11 @@ function deal() {
     card2[1] = rank[topCard];
 
     // display card2
-    document.getElementById("imgCard2").src = card2[0];
+    displayCard2();
 
     // check for pair
     if (card1[1] == card2[1]) {
-        document.getElementById('textBox').textContent = "Above or Below?";
+        changeTextBox("Above or Below?");
         showAoBButtons();
         // this will stop the player from hitting
         waitingForRespose = true;
@@ -168,7 +158,8 @@ function hit() {
     // check if player has already hit on the cards, exit function if true
     if (cardAlreadyHit == true) {
         //update text
-        document.getElementById('textBox').textContent = "Please deal again"; 
+        changeTextBox("Please Deal Again");
+         
         return null;
     }
     
@@ -183,7 +174,7 @@ function hit() {
     card3[1] = rank[topCard];
 
     // display card 3
-    document.getElementById("imgCard3").src = card3[0];
+    displayCard3();
 
     // check for card 1 = card 2, determine if player wins above/below
     if (card1[1] == card2[1]) {
@@ -199,21 +190,21 @@ function hit() {
     win = (card3[1] > Math.min(card1[1], card2[1])) && (card3[1] < Math.max(card1[1], card2[1]));
     if (win) {
         // update text
-        document.getElementById('textBox').textContent = "You Win!";
+        changeTextBox("You Win!");
         // hide all buttons except deal
         hideAllButtons();
         // Adjust wallet for win
         walletBalance += winAmount;
-        document.getElementById('walletDisplay').textContent = `Wallet: $${walletBalance}`;
+        displayWallet();
     }
     else {
         // update text
-        document.getElementById('textBox').textContent = "You Lose";
+        changeTextBox("You Lose");
         // hide all buttons except deal
      hideAllButtons();
      // Deduct loss amount from the wallet
      walletBalance -= lossAmount;
-     document.getElementById('walletDisplay').textContent = `Wallet: $${walletBalance}`;
+     displayWallet();
     }
 
     // locks hit function from being called again until deal is called
@@ -260,11 +251,11 @@ function pr_AHoL_H() {
     card2[1] = rank[topCard];
     
     // display card 2
-     document.getElementById("imgCard2").src = card2[0]
+     displayCard2();
 
     // if card2 is 14 (an ace) prompt player "Below", remove hit button and show below button
     if (card2[1] == 14) {
-        document.getElementById('textBox').textContent = "Below?"
+        changeTextBox("Below?");
        hideAllButtons();
         document.getElementById("aoBBButtons").style.display = "block"  
     }
@@ -272,10 +263,9 @@ function pr_AHoL_H() {
     else {
     
     // prompt player
-    document.getElementById('textBox').textContent = ""
+    changeTextBox(" ");
+    hideAllButtons();
     showHitButton();
-    document.getElementById("aHoLHButtons").style.display = "none"
-    document.getElementById("aHoLLButtons").style.display = "none"
         
     // unlock the hit function
     waitingForRespose = false;
@@ -295,13 +285,13 @@ function pr_AHoL_L() {
     card1[1] = 1;
 
     // display card 2
-    document.getElementById("imgCard2").src = card2[0]
+    displayCard2();
 
     // prompt player
-    document.getElementById('textBox').textContent = ""
+    changeTextBox(" ");
+    hideAllButtons();
     showHitButton();
-    document.getElementById("aHoLHButtons").style.display = "none"
-    document.getElementById("aHoLLButtons").style.display = "none"
+    
     
     // unlock the hit function
     waitingForRespose = false;
@@ -309,9 +299,12 @@ function pr_AHoL_L() {
 }
 
 
-//**********************************//
-//  Show and Hide Button Functions  //
-//**********************************//
+//**************************//
+//  HTML Element Functions  //
+//**************************//
+
+
+//buttons
 
 function hideAllButtons() {
 document.getElementById("aoBBButtons").style.display = "none"
@@ -339,4 +332,41 @@ document.getElementById("aHoLLButtons").style.display = "block"
 function showHitButton() {
 document.getElementById("hitButton").style.display = "block"
 
+}
+
+//text box
+
+function changeTextBox(newText) {
+    // Get the text box element by its ID
+    var textBox = document.getElementById('textBox');
+
+    // Change the text content of the text box
+    textBox.textContent = newText;
+}
+
+
+//card images
+
+function clearCards() {
+    document.getElementById("imgCard1").src = '';
+    document.getElementById("imgCard2").src = '';
+    document.getElementById("imgCard3").src = '';
+}
+
+function displayCard1() {
+    document.getElementById("imgCard1").src = card1[0];
+}
+
+function displayCard2() {
+    document.getElementById("imgCard2").src = card2[0]
+}
+
+function displayCard3() {
+    document.getElementById("imgCard3").src = card2[0]
+}
+
+//wallet
+
+function displayWallet() {
+    document.getElementById('walletDisplay').textContent = `Wallet: $${walletBalance}`;
 }
