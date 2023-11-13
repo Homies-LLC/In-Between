@@ -29,16 +29,16 @@ for (i=0;i<52;i++) {
 let cardname = [];
 for (i=0;i<52;i++) {
     if (i <= 12) {
-        cardname.push("Cards PNG/" + JSON.stringify(i+2) + "_of_spades.png");
+        cardname.push("Cards DUB/" + JSON.stringify(i+2) + "_of_spades.png");
     }
     else if (i <= 25) {
-        cardname.push("Cards PNG/" + JSON.stringify(i + 2 - 13) + "_of_clubs.png");
+        cardname.push("Cards DUB/" + JSON.stringify(i + 2 - 13) + "_of_clubs.png");
     }
     else if (i <= 38) {
-        cardname.push("Cards PNG/" + JSON.stringify(i + 2 - 13 - 13) + "_of_diamonds.png");
+        cardname.push("Cards DUB/" + JSON.stringify(i + 2 - 13 - 13) + "_of_diamonds.png");
     }
     else if (i <= 51) {
-        cardname.push("Cards PNG/" + JSON.stringify(i + 2 - 13 - 13 - 13) + "_of_hearts.png");
+        cardname.push("Cards DUB/" + JSON.stringify(i + 2 - 13 - 13 - 13) + "_of_hearts.png");
     }
 }
 
