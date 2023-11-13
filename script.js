@@ -116,12 +116,7 @@ function deal() {
     walletBalance -= anteAmount;
     displayWallet();
 
-    // draw top card, assign card 1
-    let topCard = deck.pop();
-    card1[0] = cardname[topCard];
-    card1[1] = rank[topCard];
- 
-    // display card1
+    // draw card1 and display card1
     displayCard1()
 
     // check for ace
@@ -132,12 +127,7 @@ function deal() {
         return null;
     }
     
-    // draw new top card, assign card 2
-    topCard = deck.pop();
-    card2[0] = cardname[topCard];
-    card2[1] = rank[topCard];
-
-    // display card2
+    //draw card2 and display card2
     displayCard2();
 
     // check for pair
@@ -168,12 +158,7 @@ function hit() {
     return null;
     }
 
-    // draw the top card, assign card3
-    let topCard = deck.pop();
-    card3[0] = cardname[topCard];
-    card3[1] = rank[topCard];
-
-    // display card 3
+    // draw card3 and display card 3
     displayCard3();
 
     // check for card 1 = card 2, determine if player wins above/below
@@ -245,12 +230,8 @@ function pr_AoB_B() {
 // player response, ace high or low? High
 function pr_AHoL_H() {
 
-    // draw a top card off the deck, assign card 2 its values
-    let topCard = deck.pop();
-    card2[0] = cardname[topCard];
-    card2[1] = rank[topCard];
     
-    // display card 2
+    // draw card2 and display card 2
      displayCard2();
 
     // if card2 is 14 (an ace) prompt player "Below", remove hit button and show below button
@@ -276,15 +257,10 @@ function pr_AHoL_H() {
 // player response, ace high or low? Low
 function pr_AHoL_L() {
 
-    // draw a top card off the deck, assign card 2 its values
-    let topCard = deck.pop();
-    card2[0] = cardname[topCard];
-    card2[1] = rank[topCard];
-    
     // Ace is now low, needed to determine player win/lose
     card1[1] = 1;
 
-    // display card 2
+    // draw card2 display card2
     displayCard2();
 
     // prompt player
@@ -354,14 +330,23 @@ function clearCards() {
 }
 
 function displayCard1() {
+    let topCard = deck.pop();
+    card1[0] = cardname[topCard];
+    card1[1] = rank[topCard];
     document.getElementById("imgCard1").src = card1[0];
 }
 
 function displayCard2() {
+    topCard = deck.pop();
+    card2[0] = cardname[topCard];
+    card2[1] = rank[topCard];
     document.getElementById("imgCard2").src = card2[0]
 }
 
 function displayCard3() {
+    let topCard = deck.pop();
+    card3[0] = cardname[topCard];
+    card3[1] = rank[topCard];
     document.getElementById("imgCard3").src = card3[0]
 }
 
