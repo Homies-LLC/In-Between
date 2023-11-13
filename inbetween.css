@@ -90,4 +90,8 @@ img {
   body {
     font-size: 20px;
   }
+  img {
+    height: calc(35vw * 1.4);
+    margin: 5px;
+  }
 }
