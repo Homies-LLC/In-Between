@@ -47,6 +47,27 @@ a {
     margin-top: 5vh;
 }
 
+/****  Typing animation  ****/
+
+/* "Keyframes" are for animations, this one is called "typing" */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+/* #p is to talk to the <p> in the HTML */
+#p.typing {
+  font-family: 'Press Start 2P', cursive;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(30);
+  text-align: center;
+  margin: 0 auto;
+}
+
 /* Blinking cursor animation */
 .start-screen pre::after {
   font-family: 'Press Start 2P', cursive;
@@ -61,6 +82,25 @@ a {
     opacity: 0;
   }
   50% {
+    opacity: 1;
+  }
+}
+
+
+/****  ASCII "fade in" Animation  ****/
+#hiddenText {
+  opacity: 0;
+  animation: reveal 2s forwards;
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }
