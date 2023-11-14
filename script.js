@@ -49,9 +49,9 @@ let card3 = [];
 
 // bools
 let win = false;
-let cardAlreadyHit = false;
 let choiceIsAbove = false;
-let waitingForRespose = false;
+let post = false;
+let postPair = false;
 
 // wallet, betting and lossing
 let walletBalance = 10;
@@ -99,10 +99,7 @@ function deal() {
    return;
  }
     //resetting
-    clearCards();
-    changeTextBox(" ");
-    hideAllButtons();
-    showHitButton();
+    theGreatReset();
 
     // check if we have enough cards to continue
     if (deck.length <= 2) {
@@ -113,11 +110,10 @@ function deal() {
     }
    
     //charging the ante amount and display
-    walletBalance -= anteAmount;
-    displayWallet();
+    chargeAnte();
 
     // draw card1 and display card1
-    displayCard1();
+    drawCard1();
     changeTextBox("In Between?");
 
     // check for ace
@@ -129,89 +125,31 @@ function deal() {
     }
     
     //draw card2 and display card2
-    displayCard2();
+    drawCard2();
 
     // check for pair
     if (card1[1] == card2[1]) {
         changeTextBox("Above or Below?");
         showAoBButtons();
-        // this will stop the player from hitting
-        waitingForRespose = true;
+
     }
 
-    // this will allow the hit function to execute 
-    cardAlreadyHit = false;
 }
 
 // Function to deal the 3rd card, determine if you win or lose
 function hit() {
 
-    // check if player has already hit on the cards, exit function if true
-    if (cardAlreadyHit == true) {
-        //update text
-        changeTextBox("Please Deal Again");
-        return null;
-    }
+    drawCard3();
     
-    // check if the player needs to give more info (ace high/low, hit above/below) exit if true
-    if (waitingForRespose == true) {
-        return null;
-    }
+    checkAboveBelow();
+    checkInBetween();
+    checkAcePosts();
+    checkPosts();
 
-    // draw card3 and display card 3
-    displayCard3();
+    updateWallet();
 
-    // check for card 1 = card 2, determine if player wins above/below
-    if (card1[1] == card2[1]) {
-        if (choiceIsAbove) {
-            win = card3[1] > card1[1];
-        } 
-        else {
-            win = card3[1] < card1[1];
-        }
-    }
-    else {
-        // evaulate if player wins inBetween
-        win = (card3[1] > Math.min(card1[1], card2[1])) && (card3[1] < Math.max(card1[1], card2[1]));
-    }
-
-    if (win) {
-        // update text
-        changeTextBox("You Win!");
-        // hide all buttons except deal
-        hideAllButtons();
-        // Adjust wallet for win
-        walletBalance += winAmount;
-        displayWallet();
-    }
-    else {
-        // check for posting on pairs
-        if (card3[1] == card1[1] && card3[1] == card2[1]) {
-            changeTextBox("You Posted, PAY T̵̨̗̻̫̰̠̬͎̦̭͉̜̱́̍͋̕R̴̘̥͔͕͈̻͈̝̯̱͊̆̍̇̂̿̾̐͘͜Į̵̧̣̲͈̞͍̟͐̅͘ͅP̶̗̿L̷̥͕̍̾̑̉̽̍̋̊̀̈̿Ȩ̵̡̠̗̠̙̹̀̎́̎͊̈́̅̄̑!");
-            hideAllButtons();
-            walletBalance -= lossAmount * 3;
-            displayWallet();
-        }
-        //check for regular posting
-        else if (card3[1] == card1[1] || card3[1] == card2[1]) {
-            changeTextBox("You Posted, PAY DOUBLE");
-            hideAllButtons();
-            walletBalance -= lossAmount * 2;
-            displayWallet(); 
-        }
-        else {
-            // update text
-            changeTextBox("You Lose");
-            // hide all buttons except deal
-            hideAllButtons();
-            // Deduct loss amount from the wallet
-            walletBalance -= lossAmount;
-            displayWallet();
-        }
-    }
-
-    // locks hit function from being called again until deal is called
-    cardAlreadyHit = true;
+    hideAllButtons();
+    
 }
 
 
@@ -222,8 +160,7 @@ function hit() {
 // player response, above or below? Above
 function pr_AoB_A() {
 
-    // unlock the hit function
-    waitingForRespose = false;
+
 
     // logic needed to determine win/loss
     choiceIsAbove = true;
@@ -235,8 +172,7 @@ function pr_AoB_A() {
 // player response, above or below? Below
 function pr_AoB_B() {
 
-    // unlock the hit function
-    waitingForRespose = false;
+
 
     // logic needed to determine win/loss
     choiceIsAbove = false;
@@ -250,7 +186,7 @@ function pr_AHoL_H() {
 
     
     // draw card2 and display card 2
-     displayCard2();
+     drawCard2();
 
     // if card2 is 14 (an ace) prompt player "Below", remove hit button and show below button
     if (card2[1] == 14) {
@@ -267,9 +203,8 @@ function pr_AHoL_H() {
     showHitButton();
     changeTextBox("In Between?");
         
-    // unlock the hit function
-    waitingForRespose = false;
-    cardAlreadyHit = false;
+ 
+
     }
 }
 
@@ -280,7 +215,7 @@ function pr_AHoL_L() {
     card1[1] = 1;
 
     // draw card2 display card2
-    displayCard2();
+    drawCard2();
 
     // prompt player
     changeTextBox(" ");
@@ -288,10 +223,127 @@ function pr_AHoL_L() {
     showHitButton();
     changeTextBox("In Between?");
     
-    
-    // unlock the hit function
-    waitingForRespose = false;
-    cardAlreadyHit = false;
+
+}
+
+
+//**************************//
+//  CHECKS                  //
+//**************************//
+
+// check for card 1 = card 2, determine if player wins above/below
+function checkAboveBelow() {
+    if (card1[1] == card2[1]) {
+        if (choiceIsAbove == true) {
+            win = card3[1] > card1[1];
+        } 
+        if (choiceIsAbove == false) {
+            win = card3[1] < card1[1];
+        }
+    }
+}
+
+
+function checkInBetween() {
+    if (card1[1] != card2[1]) {
+        win = (card3[1] > Math.min(card1[1], card2[1])) && (card3[1] < Math.max(card1[1], card2[1]));
+    }
+}
+
+function checkPosts() {
+    // check for regular posting
+    if ( card3[1] == card1[1] || card3[1] == card2[1] ) {
+        // check for post pairs
+        if ( card1[1] == card2[1] ) {
+            postPair = true;
+
+            changeTextBox("You Posted, PAY T̵̨̗̻̫̰̠̬͎̦̭͉̜̱́̍͋̕R̴̘̥͔͕͈̻͈̝̯̱͊̆̍̇̂̿̾̐͘͜Į̵̧̣̲͈̞͍̟͐̅͘ͅP̶̗̿L̷̥͕̍̾̑̉̽̍̋̊̀̈̿Ȩ̵̡̠̗̠̙̹̀̎́̎͊̈́̅̄̑!");
+
+        }
+        else {
+            post = true;
+            changeTextBox("You Posted, PAY DOUBLE");
+        }
+    }
+}
+
+function checkAcePosts() {
+    // card 3 is an ace?
+    if (card3[1] == 14) {
+        // check for an ace post
+        if ( (card1[1] == 1 || card1[1] == 14) || (card2[1] == 14) ) {
+            // check for a pair of aces
+            if ((card1[1] == 1 || card1[1] == 14) && card2[1] == 14) {
+                postPair = true;
+            }
+            else {
+                post = true;
+            }
+        }
+    }
+}
+
+//**************************//
+//  MONEY                   //
+//**************************//
+
+function updateWallet() {
+    if (win == true) {
+        walletBalance += winAmount;
+        changeTextBox("You Win!");
+    }
+    if (win == false) {
+        if (post == true) {
+            walletBalance -= lossAmount * 2;
+            changeTextBox("You Posted, PAY DOUBLE");
+        }
+        else if (postPair == true) {
+            walletBalance -= lossAmount * 3;
+
+
+            changeTextBox("You Posted, PAY T̵̨̗̻̫̰̠̬͎̦̭͉̜̱́̍͋̕R̴̘̥͔͕͈̻͈̝̯̱͊̆̍̇̂̿̾̐͘͜Į̵̧̣̲͈̞͍̟͐̅͘ͅP̶̗̿L̷̥͕̍̾̑̉̽̍̋̊̀̈̿Ȩ̵̡̠̗̠̙̹̀̎́̎͊̈́̅̄̑!");
+
+
+        }
+        else if (post == false && postPair == false) {
+            walletBalance -= lossAmount;
+            changeTextBox("You Lose");
+        }
+    }
+        // display wallet
+        document.getElementById('walletDisplay').textContent = `Wallet: $${walletBalance}`;
+}
+
+
+function chargeAnte() {
+    walletBalance -= anteAmount
+    document.getElementById('walletDisplay').textContent = `Wallet: $${walletBalance}`;
+}
+
+
+
+
+//**************************//
+//  DISPLAY & CARD DRAW     //
+//**************************//
+
+function drawCard1() {
+    let topCard = deck.pop();
+    card1[0] = cardname[topCard];
+    card1[1] = rank[topCard];
+    document.getElementById("imgCard1").src = card1[0];
+}
+function drawCard2() {
+    topCard = deck.pop();
+    card2[0] = cardname[topCard];
+    card2[1] = rank[topCard];
+    document.getElementById("imgCard2").src = card2[0]
+}
+function drawCard3() {
+    let topCard = deck.pop();
+    card3[0] = cardname[topCard];
+    card3[1] = rank[topCard];
+    document.getElementById("imgCard3").src = card3[0]
 }
 
 
@@ -303,75 +355,68 @@ function pr_AHoL_L() {
 //buttons
 
 function hideAllButtons() {
-document.getElementById("aoBBButtons").style.display = "none"
-document.getElementById("aoBAButtons").style.display = "none"
-document.getElementById("aHoLHButtons").style.display = "none"
-document.getElementById("aHoLLButtons").style.display = "none"
-document.getElementById("hitButton").style.display = "none"
+    document.getElementById("aoBBButtons").style.display = "none"
+    document.getElementById("aoBAButtons").style.display = "none"
+    document.getElementById("aHoLHButtons").style.display = "none"
+    document.getElementById("aHoLLButtons").style.display = "none"
+    document.getElementById("hitButton").style.display = "none"
+    
+    }
+    
+    function showAoBButtons() {
+    document.getElementById("hitButton").style.display = "none"
+    document.getElementById("aoBAButtons").style.display = "block"
+    document.getElementById("aoBBButtons").style.display = "block"
+    
+    }
+    
+    function showAHoLButtons() {
+    document.getElementById("hitButton").style.display = "none"
+    document.getElementById("aHoLHButtons").style.display = "block"
+    document.getElementById("aHoLLButtons").style.display = "block"
+    
+    }
+    
+    function showHitButton() {
+    document.getElementById("hitButton").style.display = "block"
+    
+    }
+    
+    //text box
+    
+    function changeTextBox(newText) {
+        // Get the text box element by its ID
+        var textBox = document.getElementById('textBox');
+    
+        // Change the text content of the text box
+        textBox.textContent = newText;
+    }
 
+    
+//**************************//
+//  RESETTING               //
+//**************************//
+
+// the great reset
+function theGreatReset() {
+    clearCards();
+    changeTextBox("  ");
+    hideAllButtons();
+    showHitButton();
+    clearBools();
 }
 
-function showAoBButtons() {
-document.getElementById("hitButton").style.display = "none"
-document.getElementById("aoBAButtons").style.display = "block"
-document.getElementById("aoBBButtons").style.display = "block"
-
-}
-
-function showAHoLButtons() {
-document.getElementById("hitButton").style.display = "none"
-document.getElementById("aHoLHButtons").style.display = "block"
-document.getElementById("aHoLLButtons").style.display = "block"
-
-}
-
-function showHitButton() {
-document.getElementById("hitButton").style.display = "block"
-
-}
-
-//text box
-
-function changeTextBox(newText) {
-    // Get the text box element by its ID
-    var textBox = document.getElementById('textBox');
-
-    // Change the text content of the text box
-    textBox.textContent = newText;
-}
-
-
-//card images
-
+// card images
 function clearCards() {
     document.getElementById("imgCard1").src = '';
     document.getElementById("imgCard2").src = '';
     document.getElementById("imgCard3").src = '';
 }
 
-function displayCard1() {
-    let topCard = deck.pop();
-    card1[0] = cardname[topCard];
-    card1[1] = rank[topCard];
-    document.getElementById("imgCard1").src = card1[0];
-}
-
-function displayCard2() {
-    topCard = deck.pop();
-    card2[0] = cardname[topCard];
-    card2[1] = rank[topCard];
-    document.getElementById("imgCard2").src = card2[0]
-}
-
-function displayCard3() {
-    let topCard = deck.pop();
-    card3[0] = cardname[topCard];
-    card3[1] = rank[topCard];
-    document.getElementById("imgCard3").src = card3[0]
-}
-
-//wallet
-
-function displayWallet() {
-    document.getElementById('walletDisplay').textContent = `Wallet: $${walletBalance}`;
+// bools
+function clearBools() {
+    win = false;
+    choiceIsAbove = false;
+    post = false;
+    postPair = false;
 }
