@@ -69,7 +69,7 @@ shuffle();
 // button display settings
 hideAllButtons();
 // start of the textbox display
-changeTextBox("Press Deal to Begin");
+changeTextBox("Press Deal to Begin.");
 
 //*****************//
 //    Game Logic   //
@@ -261,12 +261,12 @@ function checkPosts() {
         if ( card1[1] == card2[1] ) {
             postPair = true;
 
-            changeTextBox("You Posted, PAY T̵̨̗̻̫̰̠̬͎̦̭͉̜̱́̍͋̕R̴̘̥͔͕͈̻͈̝̯̱͊̆̍̇̂̿̾̐͘͜Į̵̧̣̲͈̞͍̟͐̅͘ͅP̶̗̿L̷̥͕̍̾̑̉̽̍̋̊̀̈̿Ȩ̵̡̠̗̠̙̹̀̎́̎͊̈́̅̄̑!");
+            changeTextBox("You Posted, PAY TRIPLE!");
 
         }
         else {
             post = true;
-            changeTextBox("You Posted, PAY DOUBLE");
+            changeTextBox("You Posted, PAY DOUBLE!");
         }
     }
 }
@@ -299,19 +299,15 @@ function updateWallet() {
     if (win == false) {
         if (post == true) {
             walletBalance -= lossAmount * 2;
-            changeTextBox("You Posted, PAY DOUBLE");
+            changeTextBox("You Posted, PAY DOUBLE!");
         }
         else if (postPair == true) {
             walletBalance -= lossAmount * 3;
-
-
-            changeTextBox("You Posted, PAY T̵̨̗̻̫̰̠̬͎̦̭͉̜̱́̍͋̕R̴̘̥͔͕͈̻͈̝̯̱͊̆̍̇̂̿̾̐͘͜Į̵̧̣̲͈̞͍̟͐̅͘ͅP̶̗̿L̷̥͕̍̾̑̉̽̍̋̊̀̈̿Ȩ̵̡̠̗̠̙̹̀̎́̎͊̈́̅̄̑!");
-
-
+            changeTextBox("You Posted, PAY TRIPLE!")
         }
         else if (post == false && postPair == false) {
             walletBalance -= lossAmount;
-            changeTextBox("You Lose");
+            changeTextBox("You Lose.");
         }
     }
         // display wallet
