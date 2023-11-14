@@ -10,6 +10,7 @@ html {
 /* body settings  */
 body {
   /* zork theme */
+  display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -35,6 +36,7 @@ a {
     padding-right: 10vw;
     padding-top: 5vh;
     padding-bottom: 5vh;
+    display: inline-block;
 
 }
 
