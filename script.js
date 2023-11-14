@@ -96,7 +96,7 @@ function resetDeck() {
 // The dealing function (deals two cards and checks for ace, if ace, it stops.)
 function deal() {
     //Out of money msg
-    if (walletBalance == 0){
+    if (walletBalance <= 0){
         changeTextBox("You're Out of Money! HA!");
         hideAllButtons();
         document.getElementById("restartButton").style.display = "block"
