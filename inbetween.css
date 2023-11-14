@@ -95,3 +95,41 @@ img {
     margin: 5px;
   }
 }
+
+/****  Typing animation  ****/
+
+/* "Keyframes" are for animations, this one is called "typing" */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* #textBox is to talk to the textBox in the HTML */
+#textBox.typing {
+  font-family: 'Press Start 2P', cursive;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 2s steps(30);
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* This is "after" the typing animations. 
+The Keyframe before is for the "blinking Cursor" */
+#textBox.typing::after {
+  content: "|";
+  animation: blinkCursor 0.7s infinite;
+}
+
+@keyframes blinkCursor {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}

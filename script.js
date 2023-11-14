@@ -68,6 +68,8 @@ const lossAmount = 5;
 shuffle();
 // button display settings
 hideAllButtons();
+// start of the textbox display
+changeTextBox("Press Deal to Begin");
 
 //*****************//
 //    Game Logic   //
@@ -390,6 +392,12 @@ function hideAllButtons() {
     
         // Change the text content of the text box
         textBox.textContent = newText;
+       
+        // Removing and adding the "typing" animation to 'reset' it
+        // after each textbox change
+        textBox.classList.remove("typing");
+        void textBox.offsetWidth; // Trigger reflow
+        textBox.classList.add("typing");
     }
 
     

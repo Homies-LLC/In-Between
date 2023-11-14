@@ -46,3 +46,21 @@ a {
     text-align: center;
     margin-top: 5vh;
 }
+
+/* Blinking cursor animation */
+.start-screen pre::after {
+  font-family: 'Press Start 2P', cursive;
+  content: "|";
+  animation: blinkCursor 0.7s infinite;
+  position: absolute;
+  right: 15%;
+}
+
+@keyframes blinkCursor {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
