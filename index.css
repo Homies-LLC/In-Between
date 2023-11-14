@@ -39,6 +39,10 @@ a {
     display: inline-block;
 
 }
+a:hover {
+  background-color: #fff; 
+  color: #000; 
+}
 
 .start-screen {
     display: flex;

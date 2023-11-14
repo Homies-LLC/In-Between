@@ -96,9 +96,11 @@ function resetDeck() {
 // The dealing function (deals two cards and checks for ace, if ace, it stops.)
 function deal() {
     //Out of money msg
-    if (walletBalance <= 0){
+    if (walletBalance == 0){
         changeTextBox("You're Out of Money! HA!");
-   return;
+        hideAllButtons();
+        document.getElementById("restartButton").style.display = "block"
+        return null;
  }
     //resetting
     theGreatReset();
@@ -362,6 +364,8 @@ function hideAllButtons() {
     document.getElementById("aHoLHButtons").style.display = "none"
     document.getElementById("aHoLLButtons").style.display = "none"
     document.getElementById("hitButton").style.display = "none"
+    document.getElementById("restartButton").style.display = "none"
+
     
     }
     
@@ -427,4 +431,8 @@ function clearBools() {
     choiceIsAbove = false;
     post = false;
     postPair = false;
+}
+
+function restartGame() {
+    window.location.href = 'index.html';
 }
