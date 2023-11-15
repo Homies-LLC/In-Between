@@ -91,7 +91,7 @@ img {
     font-size: 20px;
   }
   img {
-    height: calc(35vw * 1.4);
+    height: 25vh; /* Adjust the value based on your design */
     margin: 5px;
   }
 }
