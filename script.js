@@ -55,9 +55,13 @@ let postPair = false;
 
 // wallet, betting and lossing
 let walletBalance = 10;
+let walletBalanceAI = 10;
 const anteAmount = 1;
 const winAmount = 10;
 const lossAmount = 5;
+
+//turn order
+let turn = 'player' //or AI
 
 
 //********************//
@@ -159,6 +163,10 @@ function hit() {
 
     hideAllButtons();
     
+    turn = 'AI'
+    startAIMoves();
+    document.getElementById("dealButton").style.display = "none"
+
 }
 
 
@@ -248,6 +256,7 @@ function checkAboveBelow() {
         } 
         if (choiceIsAbove == false) {
             win = card3[1] < card1[1];
+            
         }
     }
 }
@@ -266,12 +275,10 @@ function checkPosts() {
         if ( card1[1] == card2[1] ) {
             postPair = true;
 
-            changeTextBox("You Posted, PAY TRIPLE!");
-
         }
         else {
             post = true;
-            changeTextBox("You Posted, PAY DOUBLE!");
+
         }
     }
 }
@@ -339,7 +346,7 @@ function drawCard1() {
     document.getElementById("imgCard1").src = card1[0];
 }
 function drawCard2() {
-    topCard = deck.pop();
+    let topCard = deck.pop();
     card2[0] = cardname[topCard];
     card2[1] = rank[topCard];
     document.getElementById("imgCard2").src = card2[0]
@@ -417,6 +424,7 @@ function theGreatReset() {
     hideAllButtons();
     showHitButton();
     clearBools();
+    document.getElementById("dealButton").style.display = "block"
 }
 
 // card images
@@ -443,33 +451,147 @@ function restartGame() {
 //      AI FUNCTIONS        //
 //**************************//
 
+// Function to initiate AI moves
+function startAIMoves() {
+    setTimeout(playAI, 1000);
+ }
 
+ // Function for all the AI logic
 function playAI() {
     const difference = Math.abs(card1[1] - card2[1]);
+    hideAllButtons();
+    dealAI();
 
-    //checks if cards are in-between within a range of 5
-    if (difference >= 5 && walletBalance >= 0) {
-        setTimeout(hit, 2000);
+    // checks if cards are in-between within a range of 5
+    if (difference <= 5 && walletBalanceAI >= 0) {
+        setTimeout(hitAI, 2000);
         setTimeout(deal, 3000);
-        setTimeout(startAIMoves, 4000);
-
-    //checks if card1 is an ace (14) and draws the second card
-    //repeats
-    } else if (card1[1] === 14) {
+    }
+    // checks if card1 is an ace (14) and draws the second card
+    // 50/50 picks H or L, then hits
+    else if (card1[1] === 14) {
         setTimeout(drawCard2, 2000);
-        setTimeout(startAIMoves, 3000);
-
-    //if nothing else deal
-    } else if (walletBalance > 0) {
-        setTimeout(deal, 2000);
-        setTimeout(startAIMoves, 3000);
+        setTimeout(randomizeAceValue, 3000);
+        setTimeout(hitAI, 4000);
+    }
+    // checks for pair, 50/50 picks above or below, them hits
+    else if (card1[1] == card2[1]) {
+        setTimeout(randomizeChoiceIsAbove, 2000);
+        setTimeout(hitAI, 3000);
+    
+    // if nothing else deals
+    } else if (walletBalanceAI > 0) {
+        setTimeout(dealAI, 2000);
+        setTimeout(playAI, 3000);
     }
 }
 
-// Function to initiate AI moves
-function startAIMoves() {
-    // Introduce a delay before the first AI move
-    setTimeout(function () {
-        playAI();
-    }, 5000);
+
+
+// Function to 50/50 out the Above or Below for the AI
+function randomizeChoiceIsAbove() {
+    // Generate a random number (0 or 1)
+    const randomNumber = Math.floor(Math.random() * 2);
+
+    // Use the random number to set choiceIsAbove
+    const choiceIsAbove = randomNumber === 0;
+
+    return choiceIsAbove;
+}
+
+// Function to 50/50 out the High or Low ace for the AI
+function randomizeAceValue() {
+    // Generate a random number between 0 and 1
+    let randomValue = Math.random();
+
+    // Set card1[1] to 1 with a 50% probability
+    if (randomValue < 0.5) {
+        card1[1] = 1;
+    }
+}
+
+function updateWalletAI() {
+    if (win == true) {
+        walletBalanceAI += winAmount;
+        changeTextBox("I Won!");
+    }
+    if (win == false) {
+        if (post == true) {
+            walletBalanceAI -= lossAmount * 2;
+            changeTextBox("I Posted, @#$%!");
+        }
+        else if (postPair == true) {
+            walletBalanceAI -= lossAmount * 3;
+            changeTextBox("I Posted, AHHHHHHHHHHHHHHH!")
+        }
+        else if (post == false && postPair == false) {
+            walletBalanceAI -= lossAmount;
+            changeTextBox("I Lost.");
+        }
+    }
+        // display wallet
+        document.getElementById('walletDisplayAI').textContent = `Kurt's Wallet: $${walletBalanceAI}`;
+}
+
+function chargeAnteAI() {
+    walletBalanceAI -= anteAmount
+    document.getElementById('walletDisplayAI').textContent = `Kurt's Wallet: $${walletBalanceAI}`;
+}
+
+function theGreatResetAI() {
+    clearCards();
+    changeTextBox("My Turn.");
+    hideAllButtons();
+    clearBools();
+    document.getElementById("dealButton").style.display = "none"
+}
+
+
+// The dealing function (now for AI)
+function dealAI() {
+    //Out of money msg
+    if (walletBalanceAI <= 0){
+        changeTextBox("NOOOO! I'm Out of Money!");
+        hideAllButtons();
+        document.getElementById("restartButton").style.display = "block"
+        return null;
+ }
+    //resetting
+    theGreatResetAI();
+
+    // check if we have enough cards to continue
+    if (deck.length <= 2) {
+        changeTextBox("Out of cards. New Deck!");
+        hideAllButtons();
+        resetDeck();
+        return null;
+    }
+   
+    //charging the ante amount and display
+    chargeAnteAI();
+
+    // draw card1 and display card1
+    drawCard1();
+    changeTextBox("My Turn.");
+
+    //draw card2 and display card2
+    drawCard2();
+
+}
+
+
+// Function to deal the 3rd card, determine if you win or lose (now for AI)
+function hitAI() {
+
+    drawCard3();
+    
+    checkAboveBelow();
+    checkInBetween();
+    checkAcePosts();
+    checkPosts();
+    hideAllButtons();
+    updateWalletAI();
+
+    turn = 'player'
+    
 }
