@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="inbetween.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Between</title>
+</head>
+<body>
+    <div>
+        <div class="row1">
+            <p class="p1" id="walletDisplay">Wallet: $10</p>
+            <p class="p2" id="textBox"></p>
+        </div>
+
+        <div class="row2">
+            <button id = "dealButton" onclick="deal()">Deal</button>
+        </div>
+
+        <div class="row3">
+            <button id= "hitButton" onclick= "hit()">Hit</button>
+            <button id= "aoBAButtons" onclick="pr_AoB_A()">Above</button>
+            <button id= "aoBBButtons" onclick="pr_AoB_B()">Below</button>
+            <button id= "aHoLHButtons" onclick="pr_AHoL_H()">High</button>
+            <button id= "aHoLLButtons" onclick="pr_AHoL_L()">Low</button>
+            <button id="restartButton" onclick="restartGame()">Restart?</button>
+        </div>
+
+        <div class="row4">
+            <img id="imgCard1">
+            <img id="imgCard2">
+        </div>
+
+        <div class="row5"> 
+            <img id="imgCard3">
+        </div>
+    </div>
+</body>
+
+<script src="classic.js"></script>   
+
+</html>
