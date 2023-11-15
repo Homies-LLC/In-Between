@@ -66,10 +66,15 @@ const lossAmount = 5;
 
 // shuffle the deck
 shuffle();
+
 // button display settings
 hideAllButtons();
+
 // start of the textbox display
 changeTextBox("Press Deal to Begin.");
+
+// start AI function loop, commented out. Uncomment to start AI
+// startAIMoves();
 
 //*****************//
 //    Game Logic   //
@@ -232,7 +237,7 @@ function pr_AHoL_L() {
 
 
 //**************************//
-//  CHECKS                  //
+//         CHECKS           //
 //**************************//
 
 // check for card 1 = card 2, determine if player wins above/below
@@ -288,7 +293,7 @@ function checkAcePosts() {
 }
 
 //**************************//
-//  MONEY                   //
+//         MONEY            //
 //**************************//
 
 function updateWallet() {
@@ -324,7 +329,7 @@ function chargeAnte() {
 
 
 //**************************//
-//  DISPLAY & CARD DRAW     //
+//   DISPLAY & CARD DRAW    //
 //**************************//
 
 function drawCard1() {
@@ -402,7 +407,7 @@ function hideAllButtons() {
 
     
 //**************************//
-//  RESETTING               //
+//        RESETTING         //
 //**************************//
 
 // the great reset
@@ -431,4 +436,40 @@ function clearBools() {
 
 function restartGame() {
     window.location.href = 'index.html';
+}
+
+
+//**************************//
+//      AI FUNCTIONS        //
+//**************************//
+
+
+function playAI() {
+    const difference = Math.abs(card1[1] - card2[1]);
+
+    //checks if cards are in-between within a range of 5
+    if (difference >= 5 && walletBalance >= 0) {
+        setTimeout(hit, 2000);
+        setTimeout(deal, 3000);
+        setTimeout(startAIMoves, 4000);
+
+    //checks if card1 is an ace (14) and draws the second card
+    //repeats
+    } else if (card1[1] === 14) {
+        setTimeout(drawCard2, 2000);
+        setTimeout(startAIMoves, 3000);
+
+    //if nothing else deal
+    } else if (walletBalance > 0) {
+        setTimeout(deal, 2000);
+        setTimeout(startAIMoves, 3000);
+    }
+}
+
+// Function to initiate AI moves
+function startAIMoves() {
+    // Introduce a delay before the first AI move
+    setTimeout(function () {
+        playAI();
+    }, 5000);
 }
