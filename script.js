@@ -55,7 +55,7 @@ let postPair = false;
 
 // wallet, betting and lossing
 let walletBalance = 10;
-let walletBalanceAI = 10;
+let walletBalanceAI = 20;
 const anteAmount = 1;
 const winAmount = 10;
 const lossAmount = 5;
@@ -373,6 +373,7 @@ function hideAllButtons() {
     document.getElementById("aHoLLButtons").style.display = "none"
     document.getElementById("hitButton").style.display = "none"
     document.getElementById("restartButton").style.display = "none"
+    document.getElementById("Game Over").style.display = "none"
 
     
     }
@@ -458,12 +459,13 @@ function startAIMoves() {
 
  // Function for all the AI logic
 function playAI() {
-    const difference = Math.abs(card1[1] - card2[1]);
+    let difference = Math.max(Math.abs(card1[1] - card2[1]), Math.abs(card2[1] - card1[1]));
     hideAllButtons();
     dealAI();
 
     // checks if cards are in-between within a range of 5
-    if (difference <= 5 && walletBalanceAI >= 0) {
+    // deals one hard for the player
+    if (difference >= 5 && walletBalanceAI >= 0) {
         setTimeout(hitAI, 2000);
         setTimeout(deal, 3000);
     }
@@ -473,11 +475,13 @@ function playAI() {
         setTimeout(drawCard2, 2000);
         setTimeout(randomizeAceValue, 3000);
         setTimeout(hitAI, 4000);
+        setTimeout(deal, 3000);
     }
     // checks for pair, 50/50 picks above or below, them hits
     else if (card1[1] == card2[1]) {
         setTimeout(randomizeChoiceIsAbove, 2000);
         setTimeout(hitAI, 3000);
+        setTimeout(deal, 3000);
     
     // if nothing else deals
     } else if (walletBalanceAI > 0) {
@@ -553,7 +557,7 @@ function dealAI() {
     if (walletBalanceAI <= 0){
         changeTextBox("NOOOO! I'm Out of Money!");
         hideAllButtons();
-        document.getElementById("restartButton").style.display = "block"
+        document.getElementById("Game Over").style.display = "block"
         return null;
  }
     //resetting
