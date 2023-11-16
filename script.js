@@ -458,33 +458,38 @@ function startAIMoves() {
 
  // Function for all the AI logic
 function playAI() {
-    let difference = Math.max(Math.abs(card1[1] - card2[1]), Math.abs(card2[1] - card1[1]));
     hideAllButtons();
+    let differnce = -100;
     dealAI();
 
     // checks if cards are in-between within a range of 5
-    // deals one hard for the player
-    if (difference >= 6 && walletBalanceAI >= 0) {
-        setTimeout(hitAI, 1000);
-        setTimeout(deal, 3000);
+    // deals one hand for the player (this is a smooth trasition into 
+    // the player's turn. Do this after the AI hits.)
+    if (card1[1] - card2[1] > 0) {
+        differnce = card1[1] - card2[1];
     }
-    // checks if card1 is an ace (14) and draws the second card
+    if (card2[1] - card1[1] > 0) {
+        differnce = card2[1] - card1[1];
+    }
+    if (differnce >= 5) { 
+        setTimeout(hitAI, 1000);
+    }
+    
+    // checks if card1 is an ace (14) and does some card2 image magic
     // 50/50 picks H or L, then hits
     else if (card1[1] === 14) {
-        setTimeout(drawCard2, 1000);
-        setTimeout(randomizeAceValue, 2000);
-        setTimeout(hitAI, 3000);
-        setTimeout(deal, 4000);
+        document.getElementById("imgCard2").src = "  "
+        setTimeout(randomizeAceValue, 3000);
+        document.getElementById("imgCard2").src = card2[0]
+        setTimeout(hitAI, 5000);
     }
-    // checks for pair, 50/50 picks above or below, them hits
+    // checks for pair, 50/50 picks above or below, then hits
     else if (card1[1] == card2[1]) {
-        setTimeout(randomizeChoiceIsAbove, 1000);
-        setTimeout(hitAI, 2000);
-        setTimeout(deal, 3000);
+        setTimeout(randomizeChoiceIsAbove, 5000);
+        setTimeout(hitAI, 6000)
     
     // if nothing else deals
     } else if (walletBalanceAI > 0) {
-        setTimeout(dealAI, 1000);
         playAI();
     }
 }
@@ -499,7 +504,12 @@ function randomizeChoiceIsAbove() {
     // Use the random number to set choiceIsAbove
     const choiceIsAbove = randomNumber === 0;
 
-    return choiceIsAbove;
+    if (choiceIsAbove === 0) {
+        changeTextBox("Above!")
+    
+    }
+    else 
+    changeTextBox("Below!")
 }
 
 // Function to 50/50 out the High or Low ace for the AI
@@ -510,7 +520,10 @@ function randomizeAceValue() {
     // Set card1[1] to 1 with a 50% probability
     if (randomValue < 0.5) {
         card1[1] = 1;
+        changeTextBox("Low!")
     }
+    else 
+    changeTextBox("High!")
 }
 
 function updateWalletAI() {
@@ -567,6 +580,8 @@ function dealAI() {
         changeTextBox("Out of cards. New Deck!");
         hideAllButtons();
         resetDeck();
+        document.getElementById("imgCard1").src = card1[0]
+        document.getElementById("imgCard2").src = card2[0]
         return null;
     }
    
@@ -596,5 +611,6 @@ function hitAI() {
     updateWalletAI();
 
     turn = 'player'
+    document.getElementById("dealButton").style.display = 'block'
     
 }
