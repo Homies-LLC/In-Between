@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Texas Hold'em Game</title>
+  <style>
+    /* Add your CSS styling here */
+    #player-hand img, #ai-hand1 img, #ai-hand2 img, #ai-hand3 img, #ai-hand4 img, #community-cards img {
+      width: 50px; /* Adjust the size as needed */
+      height: 70px; /* Adjust the size as needed */
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <button onclick="startGame()">Start Game</button>
+    <div id="player-container">
+      <h2>Player's Hand</h2>
+      <div id="player-hand"></div>
+    </div>
+
+    <div id="ai-container">
+      <h2>AI Hands</h2>
+      <div id="ai-hand1"></div>
+      <div id="ai-hand2"></div>
+      <div id="ai-hand3"></div>
+      <div id="ai-hand4"></div>
+    </div>
+
+    <div id="community-container">
+      <h2>Community Cards</h2>
+      <div id="community-cards"></div>
+    </div>
+
+    <button onclick="dealFlop()">Deal Flop</button>
+    <button onclick="dealTurn()">Deal Turn</button>
+    <button onclick="dealRiver()">Deal River</button>
+  </div>
+  
+  <div id="winner-container">
+    <h2>Winner</h2>
+    <p id="winner-name"></p>
+  </div>
+  <script src="hold'em.js"></script>
+</body>
+</html>
